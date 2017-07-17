@@ -1,61 +1,28 @@
 %main.container.general-main-wrap
   .text-center
-    %h3.general-login-title Log In
+    %h3.general-login-title= t('.log_in')
     %a.general-login-icon{href: "#"}
       %i.fa.fa-facebook-official
     %p.general-login-text or
-  %form.general-form
+  = form_for resource, as: resource_name, url: session_path(resource_name), role: 'form', html: {class: "general-form"} do |f|
     .form-group.mb-30
-      %label.control-label.input-label{for: "email"} Enter Email
-      %input#email.form-control{name:"email", type: "email", placeholder: "Enter Email"}
-    .form-group.mb-30
-      %label.control-label.input-label{for: "password"} Password
-      %input#password.form-control{name:"password", type: "password", placeholder: "Password"}
+      %label.control-label.input-label{for: "email"}= t('.enter_email')
+      = f.email_field :email, class: 'email form-control', placeholder: t('.enter_email'), autofocus: true
+      %label.control-label.input-label{for: "password"}= t('.enter_password')
+      = f.password_field :password, class: 'form-control form-control-sm', placeholder: t('.enter_password'), autocomplete: 'off'
       = render "devise/shared/forgot"
+    -if devise_mapping.rememberable?
+      .form-group.checkbox.text-center.mb-30
+        %label.checkbox-label
+          -#%input.checkbox-input{type: "checkbox", hidden: "true"}
+          = f.check_box :remember_me, hidden: "true", class: "checkbox-input"
+          %span.checkbox-icon
+            %i.fa.fa-check
+          %span.checkbox-text= t('devise.remember')
+    %p.general-sign-text.text-center
+      = t('devise.dhaa')
+      = render "devise/shared/sign_up"
     .form-group.mb-30
-      %label.control-label.input-label{for: "confirm"} Confirm Password
-      %input#confirm.form-control{name:"confirm", type: "password", placeholder: "Confirm Password"}
-    .form-group.checkbox.text-center.mb-30
-      %label.checkbox-label
-        %input.checkbox-input{type: "checkbox", hidden: "true"}
-        %span.checkbox-icon
-          %i.fa.fa-check
-        %span.checkbox-text Remember me
-    .text-center
-      %button.btn.btn-default.mb-20{href: root_path} Back to Store
-  %p.general-sign-text.text-center
-    Don’t have an Account?
-    = render "devise/shared/sign_up"
-
-
--#<h2>Log in</h2>
--#<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-  <% end %>
-
-
-
-
-
-
-
+      .text-center
+        = f.submit "Log In", class: 'btn btn-default mb-20'
 = render "devise/shared/links"
