@@ -51,7 +51,7 @@ en:
       updated: "Your account has been updated successfully."
     sessions:
       new:
-        log_in: Log In
+        log_in: Log in
         enter_email: Enter Email
         enter_password: Enter Password
         forgot_pwd: Forgot your password?

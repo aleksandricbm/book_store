@@ -19,10 +19,8 @@
           %a.navbar-brand Bookstore
           %a.shop-link.pull-right.visible-xs{href: "#"}
             %span.shop-icon
-              %span.shop-quantity 3
         %a.shop-link.pull-right.hidden-xs{href: "#"}
           %span.shop-icon
-            %span.shop-quantity 3
         #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
           .visible-xs
             %button.close{type: "button", 'aria-label': "Close"}
@@ -39,14 +37,12 @@
                     %a.collapse-link{href: "#"} Photo
                   %li
                     %a.collapse-link{href: "#"} Web design
-              %li
-                - if user_signed_in?
+              - if user_signed_in?
+                %li
                   %span = current_user.email
                   = link_to "Log out", destroy_user_session_url, :method => :delete
-                - else
-                  = link_to 'Log in', new_user_session_path
-
-                //%a{href: "#"} My account
+              - else
+                = render "devise/shared/log_in_sign_up"
           .hidden-xs
             %ul.nav.navbar-nav
               %li
@@ -60,15 +56,21 @@
                     %a{href: "#"} Photo
                   %li
                     %a{href: "#"} Web design
-                  %li.divider{role: "separator"}
-                  %li
-                    %a{href: "#"} Log out
-              %li
-                - if user_signed_in?
-                  %span = current_user.email
-                  = link_to "Log out", destroy_user_session_url, :method => :delete
-                - else
-                  = link_to 'Log in', new_user_session_path
+              - if user_signed_in?
+                %li.dropdown
+                  %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
+                  %ul.dropdown-menu
+                    %li
+                      - if current_user.image?
+                        .text-center= image_tag(current_user.image, :class => "img-circle")
+                      - else
+                        %span= current_user.email
+
+                    %li.divider{role: "separator"}
+                    %li
+                      = link_to "Log out", destroy_user_session_url, :method => :delete
+              - else
+                = render "devise/shared/log_in_sign_up"
     = yield
 
 =render "layouts/footer"
