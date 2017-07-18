@@ -1,3 +1,4 @@
+# This controller for ApplicationController
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :reset_session
 
@@ -16,5 +17,4 @@ class ApplicationController < ActionController::Base
       user.permit(:email, :current_password, :password, :password_confirmation)
     end
   end
-
 end

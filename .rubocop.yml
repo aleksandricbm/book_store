@@ -1,0 +1,14 @@
+AllCops:
+  Exclude:
+    - 'spec/**/*'
+    - 'db/**/*'
+  TargetRubyVersion: 2.4
+
+Metrics/LineLength:
+  Max: 120
+
+FrozenStringLiteralComment:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false

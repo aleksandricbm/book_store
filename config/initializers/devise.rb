@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = 'b818d27ee7c01bb7d308545fe4cd051d749ce597f12f3636ec6d9c0237d08970c6649878981f97cd92329cf0c41bcf08c5e11c3f77f99b46afbf7d87db402dbf'
+  # config.secret_key = 'b818d27ee7c01bb7d308545fe4cd051d749ce597f12f3636ec6d9'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -108,7 +108,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 11
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'de9921d5022aec41c8fb2b53432aca9b33178fcd69f9ea671a970c3afe2e92f57c16df030ceac4c8944e2365dd714f30eb4efd265734605d1cb7ec46ac28cef5'
+  # config.pepper = 'de9921d5022aec41c8fb2b53432aca9b33178fcd69f9ea671a970c3afe'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -274,5 +274,5 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-  config.omniauth :facebook, "1977674385795131", "caf3cac51a4ad5805ba0c3118b4888f9", callback_url: "http://localhost:3000/users/auth/facebook/callback"
+  config.omniauth :facebook, '1977674385795131', 'caf3cac51a4ad5805ba0c3118b4888f9', callback_url: 'http://localhost:3000/users/auth/facebook/callback'
 end

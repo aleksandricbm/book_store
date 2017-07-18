@@ -1,3 +1,4 @@
+# This controller for Users::ConfirmationsController
 class Users::ConfirmationsController < Devise::ConfirmationsController
   # GET /resource/confirmation/new
   # def new
