@@ -42,6 +42,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'factory_girl'
   gem 'pry-byebug'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
@@ -52,10 +53,8 @@ group :development do
   gem 'fasterer'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'overcommit'
-  gem 'rack-test'
   gem 'rails_best_practices'
   gem 'reek'
-  gem 'rspec'
   gem 'rubocop', require: false
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

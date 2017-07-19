@@ -263,10 +263,6 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    rspec (3.6.0)
-      rspec-core (~> 3.6.0)
-      rspec-expectations (~> 3.6.0)
-      rspec-mocks (~> 3.6.0)
     rspec-core (3.6.0)
       rspec-support (~> 3.6.0)
     rspec-expectations (3.6.0)
@@ -274,6 +270,14 @@ GEM
       rspec-support (~> 3.6.0)
     rspec-mocks (3.6.0)
       diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.6.0)
+    rspec-rails (3.6.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.6.0)
+      rspec-expectations (~> 3.6.0)
+      rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
     rubocop (0.49.1)
@@ -359,12 +363,11 @@ DEPENDENCIES
   pg (~> 0.18)
   pry-byebug
   puma (~> 3.7)
-  rack-test
   rails (~> 5.1.2)
   rails_admin
   rails_best_practices
   reek
-  rspec
+  rspec-rails
   rubocop
   sass-rails (~> 5.0)
   selenium-webdriver
