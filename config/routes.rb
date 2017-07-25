@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root 'home#home'
-  get 'users/profile'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources 'book'

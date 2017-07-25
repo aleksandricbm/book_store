@@ -3,7 +3,7 @@
   %head
     %meta{charset: "UTF-8"}
     %meta{name: "viewport", content: "width=device-width"}
-    %title Bookstore
+    %title= t("mag_title")
     %link{href: "https://fonts.googleapis.com/css?family=Open+Sans", rel: "stylesheet"}
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
@@ -16,7 +16,7 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand Bookstore
+          %a.navbar-brand= t("mag_title")
           %a.shop-link.pull-right.visible-xs{href: "#"}
             %span.shop-icon
         %a.shop-link.pull-right.hidden-xs{href: "#"}
@@ -27,9 +27,9 @@
               %span{'aria-hidden': "true"} &times;
             %ul.nav.navbar-nav
               %li
-                %a{href: "/"} Home
+                %a{href: "/"}= t("footer.home")
               %li
-                %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
+                %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}= t("footer.shop")
                 %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
                   = render 'layouts/list_categories', categories: @category
               - if user_signed_in?
@@ -41,14 +41,14 @@
           .hidden-xs
             %ul.nav.navbar-nav
               %li
-                %a{href: "/"} Home
+                %a{href: "/"}= t("footer.home")
               %li.dropdown
-                %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
+                %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t("footer.shop")
                 %ul.dropdown-menu
                   = render "layouts/list_categories", categories: @category
               - if user_signed_in?
                 %li.dropdown
-                  %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
+                  %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t("footer.my_acc")
                   %ul.dropdown-menu
                     %li
                       - if current_user.image?

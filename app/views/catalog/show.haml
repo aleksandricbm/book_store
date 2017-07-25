@@ -1,24 +1,16 @@
 %main.container
-  %h1.general-title-margin Сatalog
+  %h1.general-title-margin= t("title.catalog")
   .hidden-xs.clearfix
     .dropdowns.pull-right
       .dropdown.width-240
         %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-          Newest first
+          = t("filters.newest_first")
           %i.fa.fa-angle-down.dropdown-icon.pull-right
-        %ul.dropdown-menu
-          %li
-            %a{href: "#"} Newest first
-          %li
-            %a{href: "#"} Popular first
-          %li
-            %a{href: "#"} Price: Low to hight
-          %li
-            %a{href: "#"} Price: Low to hight
+        = render 'layouts/filters'
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
         %a.filter-link{href: catalog_path()}
-          All
+          = t("text_helpers.all")
           %span.badge.general-badge= @count_book_in_category.inject(0){|sum,x| sum +x[1]}
       - @count_book_in_category.each do |count_cat|
         %li.mr-35
@@ -26,34 +18,18 @@
           = count_cat[0][0]
           %span.badge.general-badge= count_cat[1]
   .dropdowns.mb-25.visible-xs
-    %p.lead.small.mb-10 Filter by category
+    %p.lead.small.mb-10=t("filters.filter_by_cat")
     .dropdown
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        Newest first
+        = t("filters.newest_first")
         %i.fa.fa-angle-down.dropdown-icon.pull-right
-      %ul.dropdown-menu
-        %li
-          %a{href: "#"} Newest first
-        %li
-          %a{href: "#"} Popular first
-        %li
-          %a{href: "#"} Price: Low to hight
-        %li
-          %a{href: "#"} Price: Low to hight
-    %p.lead.small.mb-10 Sort by
+      = render 'layouts/filters'
+    %p.lead.small.mb-10= t("text_helpers.sort_by")
     .dropdown
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
-        Newest first
+        = t("filters.newest_first")
         %i.fa.fa-angle-down.dropdown-icon.pull-right
-      %ul.dropdown-menu
-        %li
-          %a{href: "#"} Newest first
-        %li
-          %a{href: "#"} Popular first
-        %li
-          %a{href: "#"} Price: Low to hight
-        %li
-          %a{href: "#"} Price: Low to hight
+      = render 'layouts/filters'
   .mb-120{id: "list_catalog"}
     -# @catalog_list.each_with_index do |item, idx|
     -# binding.pry

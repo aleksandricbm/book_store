@@ -8,4 +8,4 @@
       %p.lead= book.description
       %p.lead.small= book.authors.map{ |author| author.name}.join(", ")
       .general-align
-        %button.btn.btn-primary Buy Now
+        %button.btn.btn-primary= t("button.buy_now")
