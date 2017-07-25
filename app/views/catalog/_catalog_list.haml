@@ -1,0 +1,7 @@
+-# binding.pry
+- catalog_list.in_groups_of(4).each do |group|
+  .row
+    - group.each do |best|
+      = render 'layouts/book_lite', best: best if best.present?
+.text-center
+  = link_to 'View More', (path_to_next_page @catalog_list), class: 'btn btn-primary', id: 'view_more', :remote => true unless @catalog_list.last_page?

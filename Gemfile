@@ -34,6 +34,7 @@ gem 'bootstrap-sass'
 gem 'cancancan'
 gem 'devise'
 gem 'haml'
+gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'rails_admin'
 
