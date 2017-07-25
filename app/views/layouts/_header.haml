@@ -31,12 +31,7 @@
               %li
                 %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"} Shop
                 %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-                  %li
-                    %a.collapse-link{href: "#"} Mobile development
-                  %li
-                    %a.collapse-link{href: "#"} Photo
-                  %li
-                    %a.collapse-link{href: "#"} Web design
+                  = render 'layouts/list_categories', categories: @category
               - if user_signed_in?
                 %li
                   %span = current_user.email
@@ -50,12 +45,7 @@
               %li.dropdown
                 %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} Shop
                 %ul.dropdown-menu
-                  %li
-                    %a{href: "#"} Mobile development
-                  %li
-                    %a{href: "#"} Photo
-                  %li
-                    %a{href: "#"} Web design
+                  = render "layouts/list_categories", categories: @category
               - if user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"} My account
@@ -71,6 +61,3 @@
                       = link_to "Log out", destroy_user_session_url, :method => :delete
               - else
                 = render "devise/shared/log_in_sign_up"
-    = yield
-
-=render "layouts/footer"

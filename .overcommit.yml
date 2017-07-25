@@ -40,7 +40,7 @@ PreCommit:
     enabled: false
 
   RailsBestPractices:
-    enabled: true
+    enabled: false
 
   Brakeman:
     enabled: true
