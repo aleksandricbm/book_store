@@ -6,7 +6,7 @@
         %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
           = t("filters.newest_first")
           %i.fa.fa-angle-down.dropdown-icon.pull-right
-        = render 'layouts/filters'
+        = render 'layouts/filters', category_id: @catalog_list.first.category_id
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
         %a.filter-link{href: catalog_path()}
@@ -23,13 +23,13 @@
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
         = t("filters.newest_first")
         %i.fa.fa-angle-down.dropdown-icon.pull-right
-      = render 'layouts/filters'
+      = render 'layouts/filters', category_id: @catalog_list.first.category_id
     %p.lead.small.mb-10= t("text_helpers.sort_by")
     .dropdown
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
         = t("filters.newest_first")
         %i.fa.fa-angle-down.dropdown-icon.pull-right
-      = render 'layouts/filters'
+      = render 'layouts/filters', category_id: @catalog_list.first.category_id
   .mb-120{id: "list_catalog"}
     -# @catalog_list.each_with_index do |item, idx|
     -# binding.pry

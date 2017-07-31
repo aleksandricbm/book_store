@@ -23,8 +23,8 @@ en:
     newest_first: Newest first
     filter_by_cat: Filter by category
     pop_first: Popular first
-    price_h: "Price: Low to Hight"
-    price_l: "Price: Hight to Low"
+    price_l: "Price: Low to Hight"
+    price_h: "Price: Hight to Low"
   text:
     home_members: "We pore through hundreds of new books each month and select the five best we can find to share with our members."
   footer:
