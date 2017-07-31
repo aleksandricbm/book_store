@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :category
 
+  helper_method :current_order
+
   add_flash_types :error, :success
 
   def category
@@ -20,6 +22,14 @@ class ApplicationController < ActionController::Base
     end
     devise_parameter_sanitizer.permit(:account_update) do |user|
       user.permit(:email, :current_password, :password, :password_confirmation)
+    end
+  end
+
+  def current_order
+    if session[:order_id]
+      Order.find(session[:order_id])
+    else
+      Order.new
     end
   end
 end

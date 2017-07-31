@@ -1,0 +1,109 @@
+/ <% if @order_items.any? %>
+/   <% @order_items.each do |item| %>
+/     <p><%= item.book.name %> | <%= link_to "Delete", order_item_path(item), :data => {:confirm => "You sure?", :method => "delete"} %></p>
+/     <p> Unit Price: <%= number_to_currency item.book.price %> | Quantity: <%= item.quantity %> | Total Price: <%= number_to_currency (item.book.price * item.quantity) %></p>
+/   <% end %>
+/   <p>Your Total: <%= number_to_currency current_order.total_price %></p>
+/ <% else %>
+/   <p>Your shopping cart is empty.</p>
+/ <% end %>
+
+
+%main.container.general-main-wrap
+  %h1.general-title-margin Cart
+  - if @order_items.any?
+    - @order_items.each do |item|
+      .visible-xs
+        .general-cart-item.divider-lg-bottom
+          %button.close.general-cart-close{type: "button", 'aria-label': "Close"}
+            %span{'aria-hidden': "true"} &times;
+          .general-img-wrap-table
+            %img.cart-img-shadow{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+          %p.title= item.book.name
+          %table.table
+            %tr
+              %td
+                %span.in-grey-600 Price
+              %td
+                %span.font-16.in-gold-500= "€ #{item.price}"
+            %tr
+              %td.vertical-middle
+                %span.in-grey-600 Quantity
+              %td
+                .input-group
+                  %a.input-link{href: "#"}
+                    %i.fa.fa-minus.line-heaght-40
+                  %input.form-control.quantity-input{type: "text", value: item.quantity}
+                  %a.input-link{href: "#"}
+                    %i.fa.fa-plus.line-heaght-40
+            %tr
+              %td
+                %span.in-grey-600 SubTotal
+              %td
+                %span.font-16.in-gold-500= "€ #{item.price*item.quantity}"
+      .hidden-xs
+        %table.table.table-hover
+          %tr.no-hover
+            %th.col-pic.pl-0
+              %span.in-grey-600 Product
+            %th.col-title
+            %th.col-price
+              %span.in-grey-600 Price
+            %th.col-quantity
+              %span.in-grey-600 Quantity
+            %th.col-total
+              %span.in-grey-600 SubTotal
+            %th.col-close
+          %tr
+            %td
+              .general-img-wrap-table
+                %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+            %td
+              %p.title= item.book.name
+            %td
+              %span.font-16.in-gold-500= "€ #{item.price}"
+            %td
+              .input-group
+                %a.input-link{href: "#"}
+                  %i.fa.fa-minus.line-heaght-40
+                %input.form-control.quantity-input{type: "text", value: item.quantity}
+                %a.input-link{href: "#"}
+                  %i.fa.fa-plus.line-heaght-40
+            %td
+              %span.font-16.in-gold-500= "€ #{item.price*item.quantity}"
+            %td
+              %span{'aria-hidden': "true"} &times;
+              = button_to "Delete", order_item_path(item), method: :delete, class: "close general-cart-close", 'aria-label': "Close"
+
+    .general-order-wrap
+      .row
+        .col-sm-4
+          .input-group.general-input-group
+            %label.input-label Enter Your Coupon Code
+            %input.form-control.mb-30{type: "text", placeholder: "Enter Your Coupon Code "}
+            %div
+              %button.btn.btn-primary.mr-5.mb-15.visible-xs-inline-block Apply Coupon
+              %button.btn.btn-primary.mb-15.res-block Update cart
+        .col-sm-8
+          .res-mr-200.text-center.general-text-right
+            %p.in-gold-500.font-18 Order Summary
+            %table.general-summary-table.general-summary-table-right.general-text-right
+              %tr
+                %td
+                  %p.font-16 Subtotal:
+                %td
+                  %p.font-16 €117.69
+              %tr
+                %td
+                  %p.font-16 Coupon:
+                %td
+                  %p.font-16 €0.00
+              %tr
+                %td
+                  %strong.font-18 Order Total:
+                %td
+                  %strong.font-18 €117.69
+            %button.btn.btn-default.mb-20.visible-xs-inline-block Checkout
+    %button.btn.btn-default.mb-20.hidden-xs.center-block Checkout
+  - else
+    %h1 Empty Cart
