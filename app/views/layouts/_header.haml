@@ -18,9 +18,11 @@
             %span.icon-bar
           %a.navbar-brand= t("mag_title")
           %a.shop-link.pull-right.visible-xs{href: cart_path()}
-            %span.shop-icon
+            %span.shop-icon= shop_quantity
+
         %a.shop-link.pull-right.hidden-xs{href: cart_path()}
-          %span.shop-icon
+          %span.shop-icon= shop_quantity
+
         #navbar.navbar-collapse.collapse.pl-30{'aria-expanded': "false"}
           .visible-xs
             %button.close{type: "button", 'aria-label': "Close"}
@@ -41,7 +43,7 @@
           .hidden-xs
             %ul.nav.navbar-nav
               %li
-                %a{href: "/"}= t("footer.home")
+                %a{href: root_path()}= t("footer.home")
               %li.dropdown
                 %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t("footer.shop")
                 %ul.dropdown-menu

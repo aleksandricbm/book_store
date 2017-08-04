@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   get '/catalog/:id', to: 'catalog#show', as: 'catalog_id'
   resources 'category', only: [:show]
   resource :cart, only: [:show]
-  resources 'order_items'
+  resources :order_items do
+    put 'decrease', on: :member
+    put 'increase', on: :member
+  end
 end

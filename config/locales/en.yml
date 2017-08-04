@@ -27,6 +27,10 @@ en:
     price_h: "Price: Hight to Low"
   text:
     home_members: "We pore through hundreds of new books each month and select the five best we can find to share with our members."
+  cart:
+    subtotal: "Subtotal:"
+    coupon: "Coupon:"
+    total: "Order Total:"
   footer:
     home: Home
     shop: Shop

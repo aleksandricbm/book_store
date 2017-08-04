@@ -22,7 +22,7 @@
     %h2.h1= t("title.welcome")
     .mb-res-50
       %p= t("text.home_members")
-    %button.btn.btn-default= t("button.start")
+      = link_to t("button.start"), catalog_path(), class: "btn btn-default"
   .mb-35
     %h3=t ("text_helpers.best_sellers")
     .row

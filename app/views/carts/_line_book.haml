@@ -1,0 +1,21 @@
+- order_items.each do |item|
+  %tr
+    %td
+      .general-img-wrap-table
+        %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+    %td
+      %p.title= item.book.name
+    %td
+      %span.font-16.in-gold-500= "€ #{item.price}"
+    %td
+      .input-group
+        = link_to decrease_order_item_path(item, authenticity_token: form_authenticity_token), method: :put, class: "input-link" do
+          %i.fa.fa-minus.line-heaght-40
+        %input.form-control.quantity-input{type: "text", value: item.quantity}
+        = link_to increase_order_item_path(item, authenticity_token: form_authenticity_token), method: :put, class: "input-link" do
+          %i.fa.fa-plus.line-heaght-40
+    %td
+      %span.font-16.in-gold-500= "€ #{item.item_total_price}"
+    %td
+      = button_to order_item_path(item), { method: :delete, class: "close general-cart-close", 'aria-label': "Close" } do
+        %span{'aria-hidden': "true"} &times;
