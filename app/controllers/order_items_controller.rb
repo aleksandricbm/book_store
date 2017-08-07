@@ -5,30 +5,38 @@ class OrderItemsController < ApplicationController
   after_action :order_save, only: %i[destroy create]
 
   def create
-    @item = @order.order_items.new(item_params)
-    @item.price = Book.find(item_params[:book_id]).price
-    session[:order_id] = @order.id
-    respond_to do |format|
-      format.html
-      format.js { render layout: false, locals: { qty: @order.total_quantity }, file: 'carts/_head_quantity_cart' }
+    if @order.order_items.find_by(book_id: item_params[:book_id])
+      @item = @order.order_items.find_by(book_id: item_params[:book_id])
+      increase
+    else
+      @item = @order.order_items.new(item_params)
+      @item.price = Book.find(item_params[:book_id]).price
+      session[:order_id] = @order.id
+      respond_to do |format|
+        format.html
+        format.js { render layout: false, locals: { qty: @order.total_quantity }, file: 'carts/_head_quantity_cart' }
+      end
     end
   end
 
   def destroy
     @item.destroy
-    redirect_to cart_path
+    redirect_cart
   end
 
   def decrease
     @item.remove_book(@item)
     @item.save
-    redirect_to cart_path
+    redirect_cart
   end
 
   def increase
     @item.add_book(@item)
     @item.save
-    redirect_to cart_path
+    respond_to do |format|
+      format.html { redirect_to cart_path }
+      format.js { render layout: false, locals: { qty: @order.total_quantity }, file: 'carts/_head_quantity_cart' }
+    end
   end
 
   private
@@ -39,6 +47,10 @@ class OrderItemsController < ApplicationController
 
   def order_save
     @order.save
+  end
+
+  def redirect_cart
+    redirect_to cart_path
   end
 
   def find_order

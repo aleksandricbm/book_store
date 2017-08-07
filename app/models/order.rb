@@ -2,13 +2,14 @@
 class Order < ApplicationRecord
   has_many :order_items
   has_many :books, through: :order_items
+  belongs_to :coupon, optional: true
 
   def total_price
     self.order_items.inject(0) { |sum, item| sum + item.item_total_price }
   end
 
   def discount
-    0
+    self.coupon.price
   end
 
   def order_total
