@@ -2,7 +2,6 @@
 class OrderItemsController < ApplicationController
   before_action :find_order, only: %i[create destroy decrease increase]
   before_action :find_item, only: %i[destroy decrease increase]
-  after_action :order_save, only: %i[destroy create]
 
   def create
     if @order.order_items.find_by(book_id: item_params[:book_id])
@@ -11,6 +10,7 @@ class OrderItemsController < ApplicationController
     else
       @item = @order.order_items.new(item_params)
       @item.price = Book.find(item_params[:book_id]).price
+      @order.save
       session[:order_id] = @order.id
       respond_to do |format|
         format.html
@@ -21,6 +21,7 @@ class OrderItemsController < ApplicationController
 
   def destroy
     @item.destroy
+    @order.save
     redirect_cart
   end
 
@@ -43,10 +44,6 @@ class OrderItemsController < ApplicationController
 
   def find_item
     @item = @order.order_items.find(params[:id])
-  end
-
-  def order_save
-    @order.save
   end
 
   def redirect_cart
