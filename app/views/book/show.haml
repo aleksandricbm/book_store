@@ -17,7 +17,7 @@
     .col-sm-6
       %h1.mt-res-0= @book.name
       %p.lead.small= @book.authors.map{ |author| author.name}.join(", ")
-      = form_for @order_item, remote: true do |f|
+      = form_for @order_item, remote: true, authenticity_token: true do |f|
         .row
           .col-xs-12.col-md-4
             %p.h1.in-gold-500.mt-10= "€ #{@book.price}"
