@@ -1,5 +1,14 @@
 en:
   mag_title: Bookstore
+  address:
+    first_name: First Name
+    last_name: Last Name
+    address: Adress
+    city: City
+    zip: Zip
+    country: Country
+    select_country: Select Country
+    phone: Phone
   button:
     back_result: Back to results
     add_to_cart: Add to Cart
@@ -7,6 +16,7 @@ en:
     view_more: View more
     buy_now: Buy Now
     start: Get Started
+    save: "Save"
   title:
     catalog: Catalog
     welcome: Welcome to our amazing Bookstore!
@@ -31,6 +41,25 @@ en:
     subtotal: "Subtotal:"
     coupon: "Coupon:"
     total: "Order Total:"
+  settings:
+    title: "Settings"
+    address: "Address"
+    privacy: "Privacy"
+    b_address: "Billing Address"
+    s_address: "Shipping Address"
+  remove_account:
+    title: "Remove Account"
+    button: "Please Remove My Account"
+    confirm: "I understand that all data will be lost"
+  change_email:
+    title: "Email"
+    lable_email: "Enter Email"
+    enter_email: "Enter your email"
+  change_pass:
+    title: "Password"
+    old_pwd: "Old Password"
+    new_pwd: "New Password"
+    conf_pwd: "Confirm Password"
   footer:
     home: Home
     shop: Shop

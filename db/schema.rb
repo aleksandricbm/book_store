@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806113901) do
+ActiveRecord::Schema.define(version: 20170808104808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,21 @@ ActiveRecord::Schema.define(version: 20170806113901) do
     t.bigint "book_id"
     t.index ["author_id"], name: "index_authors_books_on_author_id"
     t.index ["book_id"], name: "index_authors_books_on_book_id"
+  end
+
+  create_table "billing_addresses", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
+    t.string "city"
+    t.string "zip"
+    t.string "phone"
+    t.bigint "user_id"
+    t.bigint "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_billing_addresses_on_country_id"
+    t.index ["user_id"], name: "index_billing_addresses_on_user_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -50,6 +65,10 @@ ActiveRecord::Schema.define(version: 20170806113901) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -80,6 +99,21 @@ ActiveRecord::Schema.define(version: 20170806113901) do
     t.index ["coupon_id"], name: "index_orders_on_coupon_id"
   end
 
+  create_table "shipping_addresses", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "address"
+    t.string "city"
+    t.string "zip"
+    t.string "phone"
+    t.bigint "user_id"
+    t.bigint "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_shipping_addresses_on_country_id"
+    t.index ["user_id"], name: "index_shipping_addresses_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -103,9 +137,13 @@ ActiveRecord::Schema.define(version: 20170806113901) do
 
   add_foreign_key "authors_books", "authors"
   add_foreign_key "authors_books", "books"
+  add_foreign_key "billing_addresses", "countries"
+  add_foreign_key "billing_addresses", "users"
   add_foreign_key "books", "categories"
   add_foreign_key "books", "orders"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "coupons"
+  add_foreign_key "shipping_addresses", "countries"
+  add_foreign_key "shipping_addresses", "users"
 end

@@ -22,10 +22,11 @@ def generate_data
         )
   end
 
-    Book.all.map do |book|
-      Author.find(rand(1..25)).books << book
-    end
+  Book.all.map do |book|
+    Author.find(rand(1..25)).books << book
+  end
 
+  25.times { Country.create(name: FFaker::Address.country) }
 end
 
 generate_data

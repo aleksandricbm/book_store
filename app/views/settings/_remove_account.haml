@@ -1,0 +1,10 @@
+%p.in-gold-500.font-18.mb-25= t('remove_account.title')
+%form
+  .general-settings-btn
+    %button.btn.disabled.mb-20= t('remove_account.button')
+  .form-group.checkbox.general-settings-checkbox
+    %label.checkbox-label
+      %input.checkbox-input{type: "checkbox", hidden: "true"}
+      %span.checkbox-icon
+        %i.fa.fa-check
+      %span.checkbox-text= t('remove_account.confirm')

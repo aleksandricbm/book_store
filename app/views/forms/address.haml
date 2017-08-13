@@ -1,0 +1,28 @@
+-#= form_for address, method: :put do |f|
+= f.fields_for address do |f|
+  -# binding.pry
+  -#= f.text_field :first_name
+  .form-group
+    = label_tag :first_name, t('address.first_name'), class: "control-label input-label"
+    = f.text_field :first_name, placeholder: t('address.first_name'), class: "form-control"
+  .form-group
+    = label_tag :last_name, t('address.last_name'), class: "control-label input-label"
+    = f.text_field :last_name, placeholder: t('address.last_name'), class: "form-control"
+  .form-group
+    = label_tag :address, t('address.address'), class: "control-label input-label"
+    = f.text_field :address, placeholder: t('address.address'), class: "form-control"
+  .form-group
+    = label_tag :city, t('address.city'), class: "control-label input-label"
+    = f.text_field :city, placeholder: t('address.city'), class: "form-control"
+  .form-group
+    = label_tag :zip, t('address.zip'), class: "control-label input-label"
+    = f.text_field :zip, placeholder: t('address.zip'), class: "form-control"
+  .form-group
+    = label_tag :сountry, t('address.сountry'), class: "control-label input-label"
+    %select#country.form-control{name: "country", placeholder: t('address.select_country')}
+      %option London
+      %option London
+      %option London
+  .form-group.mb-55
+    = label_tag :phone, t('address.phone'), class: "control-label input-label"
+    = f.text_field :phone, placeholder: "Example +355 66 123 4567", class: "form-control"

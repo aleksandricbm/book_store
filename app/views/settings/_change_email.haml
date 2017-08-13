@@ -1,0 +1,7 @@
+%p.in-gold-500.font-18.mb-25= t('change_email.title')
+= form_for current_user, url: change_email_setting_path(), method: :put, authenticity_token: true, remote: true, class: "general-form-md" do |f|
+  .form-group.mb-35
+    %label.control-label.input-label{for: "email"}= t('change_email.lable_email')
+    = f.email_field :email, name: :email, class: "form-control", placeholder: t('change_email.enter_email')
+  .general-text-align
+    %button.btn.btn-default.mb-35= t('button.save')

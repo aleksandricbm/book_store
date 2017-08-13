@@ -11,4 +11,8 @@ Rails.application.routes.draw do
     put 'decrease', on: :member
     put 'increase', on: :member
   end
+  resource :setting, only: [:show, :update] do
+    put :change_email
+    put :change_pwd
+  end
 end

@@ -5,14 +5,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
-
-  # def self.new_with_session(params, session)
-  #  super.tap do |user|
-  #    if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
-  #      user.email = data['email'] if user.email?
-  #    end
-  #  end
-  # end
+  has_one :billing_address, dependent: :destroy
+  has_one :shipping_address, dependent: :destroy
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates :password_confirmation, presence: true, on: :create
+  validates :password, confirmation: true, presence: true, on: :change_email
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
