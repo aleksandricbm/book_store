@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   end
 
   def discount
-    self.coupon.price if self.coupon.present?
+    return self.coupon.price if self.coupon.present?
     0
   end
 
