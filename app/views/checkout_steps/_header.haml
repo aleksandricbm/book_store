@@ -1,0 +1,8 @@
+%h1.general-title-margin Checkout
+%ul.steps.list-inline
+  - menu_header.each_with_index do |menu, index|
+    %li{class: "step #{menu_active(menu[1])}"}
+      %span.step-number= menu[0]
+      %span.step-text.hidden-xs= menu[1]
+    - if (menu_header.count - index) > 1
+      %li.step-divider

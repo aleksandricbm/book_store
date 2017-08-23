@@ -9,6 +9,8 @@ en:
     country: Country
     select_country: Select Country
     phone: Phone
+  form:
+    all_fld_require: "all fields are required"
   button:
     back_result: Back to results
     add_to_cart: Add to Cart
@@ -17,6 +19,7 @@ en:
     buy_now: Buy Now
     start: Get Started
     save: "Save"
+    save_continue: "Save and Continue"
   title:
     catalog: Catalog
     welcome: Welcome to our amazing Bookstore!

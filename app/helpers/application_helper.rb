@@ -6,7 +6,6 @@ module ApplicationHelper
   end
 
   def active_category (category)
-    p "#{params[:id]} = #{category}"
     (params[:id].to_i == category.to_i) ? 'active' : ''
   end
 end

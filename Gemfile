@@ -37,6 +37,7 @@ gem 'haml'
 gem 'kaminari'
 gem 'omniauth-facebook'
 gem 'rails_admin'
+gem 'wicked'
 
 group :development, :test do
   # Adds support for Capybara system testing and selenium driver
