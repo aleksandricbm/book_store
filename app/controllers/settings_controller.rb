@@ -6,7 +6,7 @@ class SettingsController < ApplicationController
   end
 
   def update
-    binding.pry
+    # binding.pry
     @address = SettingAddress.new(current_user)
     respond_to do |format|
       if @address.save(params[:setting_address])
@@ -15,7 +15,7 @@ class SettingsController < ApplicationController
         err = {}
         err[:billing] = @address.billing.errors unless @address.billing.errors.empty?
         err[:shipping] = @address.shipping.errors unless @address.shipping.errors.empty?
-        format.json { render json: err.to_json, callback: "testFunction" }
+        format.json { render json: err.to_json, callback: "error_parse" }
       end
     end
   end

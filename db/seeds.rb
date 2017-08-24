@@ -13,9 +13,9 @@ def generate_data
         price:        rand(1.0..999.0),
         description:  FFaker::Book.description,
         public_y:     FFaker::IdentificationESCO.expedition_date,
-        height:       rand(1...100),
-        weight:       rand(1...100),
-        depth:        rand(1...100),
+        height:       rand(2...100),
+        weight:       rand(2...100),
+        depth:        rand(2...100),
         material:     FFaker::Book.genre,
         reviews_qty:  rand(1...100),
         category_id:  Category.find(rand(1...5)).id
@@ -27,6 +27,12 @@ def generate_data
   end
 
   25.times { Country.create(name: FFaker::Address.country) }
+
+  Coupon.create(code: '10', price: 10)
+
+  ShippingMethod.create(name: 'Delivery Next Day!', duration: '1 to 2 days', price: 28.5)
+  ShippingMethod.create(name: 'Standard Delivery', duration: '2 to 4 days', price: 18.5)
+
 end
 
 generate_data

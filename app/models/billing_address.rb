@@ -1,6 +1,7 @@
 # This model BillingAdress
 class BillingAddress < ApplicationRecord
   belongs_to :user
+  belongs_to :order
 
   validates :first_name, presence: true, length: {minimum: 2}
   validates :last_name, presence: true, length: {minimum: 2}

@@ -2,7 +2,6 @@ class SettingAddress
   include ActiveModel::Model
   include Virtus
   include ActiveModel::Validations
-
   attr_accessor :billing, :shipping, :save_address
 
   # attribute :first_name, String
@@ -19,12 +18,16 @@ class SettingAddress
   # validates :zip, numericality: { only_integer: true }
   # validates :phone, numericality: true
 
-  def initialize (current_user)
+  def initialize (current_user, current_order = nil)
+    @current_order = current_order.id if current_order.present?
     create_billing_address(current_user.id)
     create_shipping_address(current_user.id)
   end
 
   def save (params)
+    # binding.pry
+    @billing.order_id=@current_order && @shipping.order_id=@current_order if @current_order.present?
+    # binding.pry
     @billing.update(params_address(params,:billing_address))
     @shipping.update(params_address(params,:shipping_address))
   end
@@ -32,29 +35,18 @@ class SettingAddress
   private
 
   def create_billing_address (user_id)
-    @billing = BillingAddress.find_by(user_id: user_id)
-    unless @billing.present?
-      @billing = BillingAddress.new(user_id: user_id)
-      @billing.save
-    end
+    # binding.pry
+    @billing = BillingAddress.find_or_initialize_by(user_id: user_id)
+    @billing.save
   end
 
   def create_shipping_address (user_id)
-    @shipping = ShippingAddress.find_by(user_id: user_id)
-    unless @shipping.present?
-      @shipping = ShippingAddress.new(user_id: user_id)
-      @shipping.save
-    end
+    @shipping = ShippingAddress.find_or_initialize_by(user_id: user_id)
+    @shipping.save
   end
 
   def params_address(params, type)
-    # binding.pry
     params.require(type).permit(:first_name,:last_name,:address,:city,:zip,:phone)
   end
 
-  # def promote_errors(type,child_errors)
-  #   child_errors.each do |attribute, message|
-  #     errors.add(attribute, message)
-  #   end
-  # end
 end
