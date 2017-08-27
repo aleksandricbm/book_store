@@ -8,6 +8,8 @@
       .col-md-5.col-md-offset-1
         %h3.general-subtitle= t("settings.s_address")
   = form_for @address, url: wizard_path, method: :put, authenticity_token: true, remote: true do |f|
+    - if params[:redirect].present?
+      = f.hidden_field 'redirect',name: 'redirect', id: 'redirect', value: params[:redirect]
     .row
       .col-md-5.mb-40
         .visible-xs.visible-sm

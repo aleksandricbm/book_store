@@ -20,6 +20,8 @@ en:
     start: Get Started
     save: "Save"
     save_continue: "Save and Continue"
+    place_order: "Place Order"
+    back_store: Back to Store
   title:
     catalog: Catalog
     welcome: Welcome to our amazing Bookstore!
@@ -45,11 +47,31 @@ en:
     subtotal: "Subtotal:"
     coupon: "Coupon:"
     total: "Order Total:"
+    ship: "Shipping"
   checkout:
     delivery:
-        method: "Method"
-        day: "Days"
-        price: "Price"
+      method: "Method"
+      day: "Days"
+      price: "Price"
+    payment:
+      title: "Credit Card"
+      number: "Card Number"
+      cardname: "Name on Card"
+      expired: "MM / YY"
+      cvv: "CVV"
+    confirm:
+      ship_address: "Shipping Address"
+      bil_address: "Billing Address"
+      ship: "Shipmetns"
+      pay: "Payment Information"
+      title_book: "Book"
+      title_price: "Price"
+      title_quantity: "Quantity"
+      title_total: "Total"
+    complete:
+      thanks: "Thank You for your Order!"
+      t_send: "An order confirmation has been has been sent to "
+      order: "Order"
     ship_method: "Shipping Method"
   settings:
     title: "Settings"

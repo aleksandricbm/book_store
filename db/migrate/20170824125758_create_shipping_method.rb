@@ -5,6 +5,6 @@ class CreateShippingMethod < ActiveRecord::Migration[5.1]
       t.string   :duration
       t.decimal  :price, precision: 8, scale: 2
     end
-    add_reference :orders, :shipping_methods, foreign_key: true
+    add_reference :shipping_methods, :order, foreign_key: true
   end
 end

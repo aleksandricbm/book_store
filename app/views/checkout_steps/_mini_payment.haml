@@ -1,0 +1,6 @@
+%p.general-address
+  = "** ** ** #{payment.number.to_s[-4,4]}"
+  %span
+    = link_to 'edit', wizard_path(:payment, redirect: 'confirm'), class: "general-edit"
+  %br
+  = payment.expired #12/2018

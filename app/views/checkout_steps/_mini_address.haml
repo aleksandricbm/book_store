@@ -1,0 +1,15 @@
+%p.general-address
+  -# binding.pry
+  = address.first_name
+  = address.last_name
+  %span
+    = link_to 'edit', wizard_path(:address, redirect: 'confirm'), class: "general-edit"
+  %br
+  = address.address
+  %br
+  = address.city
+  = address.zip
+  %br
+  = address.country_id
+  %br
+  = "Phone #{address.phone}"

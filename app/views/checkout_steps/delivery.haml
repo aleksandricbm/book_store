@@ -1,6 +1,8 @@
 %main.container.general-main-wrap
   = render 'header'
   = form_for @delivery, url: wizard_path, method: :put, remote: false do |f|
+    - if params[:redirect].present?
+      = f.hidden_field 'redirect',name: 'redirect', id: 'redirect', value: params[:redirect]
     %h3.general-subtitle= t('checkout.ship_method')
     .hidden-xs.mb-res-50
       %table.table.table-hover
