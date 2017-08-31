@@ -1,0 +1,13 @@
+%h3.in-gold-500.mb-25= t("review.new-review")
+.general-message-wrap.divider-lg
+= form_for Review.new, url: reviews_path do |f|
+  .ml-70
+    %div
+      .max-240
+        .general-message-name= "#{current_user.email}"
+  = f.hidden_field :book_id, value: @book.id
+  = f.label t('review.title')
+  %br
+  = f.text_area :comment, cols: 5, rows: 5, class: 'form-control'
+  %br
+  %button.btn.center-block.mb-20= t('button.save_continue')

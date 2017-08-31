@@ -6,7 +6,6 @@ class SettingsController < ApplicationController
   end
 
   def update
-    # binding.pry
     @address = SettingAddress.new(current_user)
     respond_to do |format|
       if @address.save(params[:setting_address])
@@ -21,15 +20,11 @@ class SettingsController < ApplicationController
   end
 
   def change_email
-    @user = current_user
-    @user.update(email: params[:email])
-    @user.save
+    current_user.update(email: params[:email])
   end
 
   def change_pwd
-    @user = current_user
-    true if @user.valid_password?(params[:user][:old_password])
-    false
+    current_user.valid_password?(params[:user][:old_password])
   end
 
   private

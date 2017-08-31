@@ -2,6 +2,7 @@
 class CatalogController < ApplicationController
   before_action :list_catalog, only: [:show]
   def show
+    binding.pry
     @count_book_in_category = count_book_in_category
     respond_to do |format|
       format.html
@@ -17,9 +18,9 @@ class CatalogController < ApplicationController
 
   def list_catalog
     @catalog_list = if params[:id].present?
-                      Book.includes(:category).where("category_id = #{params[:id]}")
+                      Book.category.where("category_id = #{params[:id]}")
                     else
-                      Book.includes(:category).order('id asc')
+                      Book.category.order('id asc')
                     end
     @catalog_list = sort if params[:sort].present?
     @catalog_list = @catalog_list.page params[:page]

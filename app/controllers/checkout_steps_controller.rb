@@ -46,6 +46,7 @@ class CheckoutStepsController < ApplicationController
     current_order.update(user_id: current_user.id)
     current_order.update(order: generate_number_order) if current_order.order.nil?
     current_order.update(total_price: current_order.order_total)
+    current_order.update(order_status_id:OrderStatus.find_by(name: 'Waiting for processing').id)
     redirect_to jump_to(:complete)
   end
 

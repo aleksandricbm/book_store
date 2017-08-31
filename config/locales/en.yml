@@ -92,6 +92,9 @@ en:
     old_pwd: "Old Password"
     new_pwd: "New Password"
     conf_pwd: "Confirm Password"
+  review:
+    title: "Review"
+    new-review: "New Review"
   footer:
     home: Home
     shop: Shop

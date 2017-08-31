@@ -8,7 +8,7 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  ef create
+  def create
   auth = request.env['omniauth.auth']
   user = User.where(provider: auth['provider'],
                     uid: auth['uid']).first || User.create_with_omniauth(auth)

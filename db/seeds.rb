@@ -33,6 +33,10 @@ def generate_data
   ShippingMethod.create(name: 'Delivery Next Day!', duration: '1 to 2 days', price: 28.5)
   ShippingMethod.create(name: 'Standard Delivery', duration: '2 to 4 days', price: 18.5)
 
+  OrderStatus.create(name: 'Waiting for processing')
+  OrderStatus.create(name: 'In Progress')
+  OrderStatus.create(name: 'In delivery')
+  OrderStatus.create(name: 'Delivered')
 end
 
 generate_data

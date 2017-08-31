@@ -16,4 +16,5 @@ Rails.application.routes.draw do
     put :change_pwd
   end
   resources :checkout_steps
+  resources :reviews, only: :create
 end

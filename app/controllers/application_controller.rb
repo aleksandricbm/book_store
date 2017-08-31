@@ -26,11 +26,9 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    # binding.pry
     if session[:order_id]
       Order.find(session[:order_id])
     else
-      # binding.pry
       Order.new
     end
     rescue ActiveRecord::RecordNotFound
