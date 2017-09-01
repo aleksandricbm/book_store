@@ -10,6 +10,9 @@ RSpec.describe Order, type: :model do
 
   it { should have_many(:books).through(:order_items) }
   it { should have_many(:order_items) }
+  it { should belong_to :coupon }
+  it { should belong_to :shipping_method }
+  it { should belong_to :order_status }
 
   it 'order total_price' do
     expect(order.total_price).to eq 20

@@ -37,6 +37,8 @@ def generate_data
   OrderStatus.create(name: 'In Progress')
   OrderStatus.create(name: 'In delivery')
   OrderStatus.create(name: 'Delivered')
+
+  User.create(email: 'admin@admin.com', password: 'adminadmin', password_confirmation: 'adminadmin', role: 'admin')
 end
 
 generate_data

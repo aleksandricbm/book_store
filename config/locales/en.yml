@@ -79,6 +79,12 @@ en:
     privacy: "Privacy"
     b_address: "Billing Address"
     s_address: "Shipping Address"
+    my_orders:
+      title: 'My Orders'
+      table_number: "Number"
+      table_completed: "Completed at"
+      table_status: "Status"
+      table_total: "Total"
   remove_account:
     title: "Remove Account"
     button: "Please Remove My Account"

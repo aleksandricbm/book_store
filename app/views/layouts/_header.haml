@@ -60,9 +60,9 @@
 
                     %li.divider{role: "separator"}
                     %li
-                      %a Orders
+                      %a{href: my_orders_path()}= t('footer.orders')
                     %li
-                      %a{href: setting_path()} Settings
+                      %a{href: setting_path()}= t('footer.settings')
                     %li.divider{role: "separator"}
                     %li
                       = link_to "Log out", destroy_user_session_url, :method => :delete

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     put :change_email
     put :change_pwd
   end
+  get 'my_orders', to: 'settings#orders'
   resources :checkout_steps
   resources :reviews, only: :create
 end

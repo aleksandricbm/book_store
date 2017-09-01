@@ -36,11 +36,15 @@ describe Book, type: :model do
   }
   it { should validate_presence_of(:category_id) }
 
-end
+  it { should have_many :reviews}
 
- # describe Book do
- #   it { expect(book).to validate_presence_of(:email) }
- #   it { expect(book).to validate_uniqueness_of(:email) }
- #   it { expect(book).to validate_presence_of(:name) }
- #   it { expect(book).to have_many(:posts) }
- # end
+  it "applies a default scope to collections" do
+    expect(Book.author.to_sql).to eq Book.all.includes(:authors).to_sql
+    expect(Book.category.to_sql).to eq Book.all.includes(:category).to_sql
+    expect(Book.order_id_desc.to_sql).to eq Book.all.order('id desc').to_sql
+    expect(Book.order_review_desc.to_sql).to eq Book.all.order('reviews_qty desc').to_sql
+    expect(Book.author.order_id_desc.to_sql).to eq Book.all.includes(:authors).order('id desc').to_sql
+    expect(Book.author.order_review_desc.to_sql).to eq Book.all.includes(:authors).order('reviews_qty desc').to_sql
+  end
+
+end

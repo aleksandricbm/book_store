@@ -14,7 +14,6 @@
           .col-md-5.col-md-offset-1
             %h3.general-subtitle.mt-0= t("settings.s_address")
       .row
-      -# binding.pry
       = form_for @address, url: setting_path(), method: :put, authenticity_token: true, remote: true do |f|
         .col-md-5.mb-40
           .visible-xs.visible-sm

@@ -19,6 +19,15 @@ class SettingsController < ApplicationController
     end
   end
 
+  def orders
+    @order_statuses = OrderStatus.all
+    if params[:filter].present?
+      @orders = filter
+    else
+      @orders = current_user.orders.decorate
+    end
+  end
+
   def change_email
     current_user.update(email: params[:email])
   end
@@ -30,5 +39,9 @@ class SettingsController < ApplicationController
   private
 
   def set_new_password
+  end
+
+  def filter
+    current_user.orders.find_by(order_status_id: params[:filter].to_i).decorate
   end
 end

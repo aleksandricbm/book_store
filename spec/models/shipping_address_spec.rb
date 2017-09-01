@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe ShippingAdress, type: :model do
+RSpec.describe ShippingAddress, type: :model do
   it { should belong_to :user }
+  it { should belong_to :order }
   it {
     should validate_presence_of(:first_name)
     should validate_length_of(:first_name).is_at_least(2)

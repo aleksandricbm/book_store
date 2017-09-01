@@ -25,7 +25,7 @@ class CheckoutStepsController < ApplicationController
       get_delivery
       get_payment
       get_order_items
-      @order.update(status: 'processing')
+
       session.delete(:order_id)
     end
     render_wizard
@@ -44,14 +44,15 @@ class CheckoutStepsController < ApplicationController
 
   def update_complete
     current_order.update(user_id: current_user.id)
-    current_order.update(order: generate_number_order) if current_order.order.nil?
+    current_order.update(number: generate_number_order) if current_order.number.nil?
     current_order.update(total_price: current_order.order_total)
     current_order.update(order_status_id:OrderStatus.find_by(name: 'Waiting for processing').id)
     redirect_to jump_to(:complete)
   end
 
   def generate_number_order
-    num = Order.maximum('order')
+    num = Order.maximum('number')
+    num = num.to_i + 1
     num=1 if num.nil?
     num.to_s.rjust(8,'0')
   end

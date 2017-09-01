@@ -2,7 +2,6 @@
 class CatalogController < ApplicationController
   before_action :list_catalog, only: [:show]
   def show
-    binding.pry
     @count_book_in_category = count_book_in_category
     respond_to do |format|
       format.html

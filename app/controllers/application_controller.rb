@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :category
+  before_action :current_order
 
   helper_method :current_order
 
@@ -25,11 +26,21 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden, content_type: 'text/html' }
+      format.html { redirect_to main_app.root_url, notice: exception.message }
+      format.js   { head :forbidden, content_type: 'text/html' }
+    end
+  end
+
   def current_order
-    if session[:order_id]
-      Order.find(session[:order_id])
+    if session[:order_id].nil?
+      order = Order.create
+      session[:order_id] = order.id
+      return order
     else
-      Order.new
+      Order.find(session[:order_id])
     end
     rescue ActiveRecord::RecordNotFound
       reset_session
