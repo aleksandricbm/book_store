@@ -35,12 +35,10 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    if session[:order_id].nil?
-      order = Order.create
-      session[:order_id] = order.id
-      return order
-    else
+    @current_order ||= if session[:order_id]
       Order.find(session[:order_id])
+    else
+      Order.new
     end
     rescue ActiveRecord::RecordNotFound
       reset_session

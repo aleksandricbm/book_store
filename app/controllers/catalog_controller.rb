@@ -1,5 +1,7 @@
 # This controller for CatalogController
 class CatalogController < ApplicationController
+  # load_and_authorize_resource
+
   before_action :list_catalog, only: [:show]
   def show
     @count_book_in_category = count_book_in_category

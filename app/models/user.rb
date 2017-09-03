@@ -9,9 +9,10 @@ class User < ApplicationRecord
   has_one :shipping_address, dependent: :destroy
   has_many :orders
 
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :email, :with => /\A(?!.*\.\.)(?!.*\-\-)^(?!\.)([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates :password, length: { minimum: 8}
   validates :password_confirmation, presence: true, on: :create
-  validates :password, confirmation: true, presence: true, on: :change_email
+  validates :password, confirmation: true, presence: true, length: {minimum: 8}, with: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/, on: :change_email
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

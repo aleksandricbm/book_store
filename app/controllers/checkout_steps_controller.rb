@@ -58,13 +58,15 @@ class CheckoutStepsController < ApplicationController
   end
 
   def update_payment
-    flash[:notice] = "Please select CreditCard"
+    # flash[:notice] = "Please select CreditCard"
     return redirect_to skip_step if params[:credit_card].nil?
     @credit_card = CreditCard.find_or_initialize_by(order_id: current_order.id)
     @credit_card.update(order_id: current_order.id)
     @credit_card.update(params_payment)
+    # binding.pry
     if !@credit_card.save
-      render json: @credit_card.errors.to_json, callback: "error_parse"
+      flash[:errors] = @credit_card.errors
+      return redirect_to skip_step
     else
       redirect_steps
     end

@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :user do
     email {FFaker::Internet.email}
-    password 'qaswedfr'
-    password_confirmation 'qaswedfr'
+    password 'aq4Awsedvgty'
+    password_confirmation 'aq4Awsedvgty'
   end
 end

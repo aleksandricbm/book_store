@@ -1,27 +1,34 @@
 %main.container.mb-res-50
   = render 'header'
+  -# binding.pry
   = form_for @payment, url: wizard_path, method: :put, remote: false, html: {class: "max-600 mb-80" } do |f|
     - if params[:redirect].present?
       = f.hidden_field 'redirect',name: 'redirect', id: 'redirect', value: params[:redirect]
     %h3.general-subtitle= t('checkout.payment.title')
-    -#.form-group.has-error
-    .form-group
+    .form-group{:class => "#{'has-error' if flash[:errors]['number']}"}
       = f.label :number, t('checkout.payment.number'), class: "control-label input-label"
       = f.text_field :number, placeholder: t('checkout.payment.number'), class: 'form-control'
-      -#%span.help-block Please enter a valid credit card number
+      - if flash[:errors]['number']
+        %span.help-block Please enter a valid credit card number
     .row
       .col-sm-6
-        .form-group
+        .form-group{:class => "#{'has-error' if flash[:errors]['name']}"}
           = f.label :name, t('checkout.payment.cardname'), class: "control-label input-label"
           = f.text_field :name, placeholder: t('checkout.payment.cardname'), class: 'form-control'
+          - if flash[:errors]['name']
+            %span.help-block Please enter a valid Name
       .col-sm-3
-        .form-group
+        .form-group{:class => "#{'has-error' if flash[:errors]['expired']}"}
           = f.label :expired, t('checkout.payment.expired'), class: "control-label input-label"
           = f.text_field :expired, placeholder: t('checkout.payment.expired'), class: 'form-control'
+          - if flash[:errors]['expired']
+            %span.help-block Please enter a valid Expired
       .col-sm-3
-        .form-group.relative
+        .form-group.relative{:class => "#{'has-error' if flash[:errors]['cvv']}"}
           = f.label :cvv, t('checkout.payment.cvv'), class: "control-label input-label"
           = f.text_field :cvv, placeholder: t('checkout.payment.cvv'), class: 'form-control'
+          - if flash[:errors]['cvv']
+            %span.help-block Please enter a valid CVV Code
           %i.fa.fa-question-circle.general-form-help
     .general-text-align
       = render 'order_summary'

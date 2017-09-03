@@ -1,6 +1,6 @@
 # This controller Setting
 class SettingsController < ApplicationController
-
+  before_action :authenticate_user!
   def show
     @address = SettingAddress.new(current_user)
   end
@@ -17,6 +17,15 @@ class SettingsController < ApplicationController
         format.json { render json: err.to_json, callback: "error_parse" }
       end
     end
+  end
+
+  def order_details
+    @order_details = Order.find(params[:id])
+    # binding.pry
+    # @address = SettingAddress.find_by(current_user)
+    # @delivery = ShippingMethod.find_by(id: @order.shipping_method_id)
+    # @payment = CreditCard.find_or_initialize_by(order_id: @order.id)
+    authorize! :create, @order_details
   end
 
   def orders

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  it { should belong_to :book }
-  it { should belong_to :user }
+  it { is_expected.to belong_to :book }
+  it { is_expected.to belong_to :user }
   it {
-    should validate_presence_of(:comment)
-    should validate_length_of(:comment).is_at_most(500)
+    is_expected.to validate_presence_of(:comment)
+    is_expected.to validate_length_of(:comment).is_at_most(500)
   }
 
   let(:book) { FactoryGirl.create(:book) }

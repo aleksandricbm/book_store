@@ -5,6 +5,9 @@ class Order < ApplicationRecord
   belongs_to :coupon, optional: true
   belongs_to :shipping_method, optional: true
   belongs_to :order_status, optional: true
+  has_one :credit_card
+  has_one :billing_address
+  has_one :shipping_address
 
   def total_price
     self.order_items.inject(0) { |sum, item| sum + item.item_total_price }
