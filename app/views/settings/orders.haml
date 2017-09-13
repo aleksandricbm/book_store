@@ -1,5 +1,5 @@
 %main.container.general-main-wrap
   %h1.mt-0.mb-25= t('settings.my_orders.title')
-  = render partial: 'filter'
-  = render partial: 'order_table'
+  = render 'filter', order_statuses: @order_statuses
+  = render 'order_table', orders: @orders
 

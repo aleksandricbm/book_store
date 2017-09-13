@@ -10,8 +10,8 @@
       %th
         %span.in-grey-600= t('settings.my_orders.table_total')
   %tbody
-    - unless @orders.nil?
-      - @orders.each do |order|
+    - unless orders.nil?
+      - orders.each do |order|
         %tr
           %td
             %span.general-order-number

@@ -1,3 +1,4 @@
+# This class CheckoutStepsController
 class CheckoutStepsController < ApplicationController
   before_action :authenticate_user!
 
@@ -9,22 +10,23 @@ class CheckoutStepsController < ApplicationController
     @order = current_order
     case step
     when :address
-      get_address
+      current_order.update(order_status_id: OrderStatus.find_by(name: 'Waiting for processing').id)
+      address
     when :delivery
-      get_delivery
+      delivery
     when :payment
-      get_delivery
-      get_payment
+      delivery
+      payment
     when :confirm
-      get_address
-      get_delivery
-      get_payment
-      get_order_items
+      address
+      delivery
+      payment
+      order_items
     when :complete
-      get_address
-      get_delivery
-      get_payment
-      get_order_items
+      address
+      delivery
+      payment
+      order_items
 
       session.delete(:order_id)
     end
@@ -46,7 +48,6 @@ class CheckoutStepsController < ApplicationController
     current_order.update(user_id: current_user.id)
     current_order.update(number: generate_number_order) if current_order.number.nil?
     current_order.update(total_price: current_order.order_total)
-    current_order.update(order_status_id:OrderStatus.find_by(name: 'Waiting for processing').id)
     redirect_to jump_to(:complete)
   end
 
@@ -58,18 +59,13 @@ class CheckoutStepsController < ApplicationController
   end
 
   def update_payment
-    # flash[:notice] = "Please select CreditCard"
     return redirect_to skip_step if params[:credit_card].nil?
-    @credit_card = CreditCard.find_or_initialize_by(order_id: current_order.id)
-    @credit_card.update(order_id: current_order.id)
-    @credit_card.update(params_payment)
-    # binding.pry
-    if !@credit_card.save
-      flash[:errors] = @credit_card.errors
-      return redirect_to skip_step
-    else
-      redirect_steps
-    end
+    @payment = CreditCard.find_or_initialize_by(order_id: current_order.id)
+    @payment.update(order_id: current_order.id)
+    @payment.update(params_payment)
+    @order = current_order
+    return render_wizard unless @payment.save
+    redirect_steps
   end
 
   def params_payment
@@ -77,9 +73,9 @@ class CheckoutStepsController < ApplicationController
   end
 
   def update_delivery
-    flash[:notice] = "Please select Shipping Method"
     return redirect_to skip_step if params[:shipping_method].nil?
-    if !current_order.update(shipping_method_id: params[:shipping_method][:id])
+    unless current_order.update(shipping_method_id: params[:shipping_method][:id])
+      flash[:notice] = "Please select Shipping Method"
       return redirect_to skip_step
     end
     redirect_steps
@@ -87,31 +83,32 @@ class CheckoutStepsController < ApplicationController
 
   def update_address
     @address = SettingAddress.new(current_user, current_order)
+    @order = current_order
     if !@address.save(params[:setting_address])
-      err = {}
-      err[:billing] = @address.billing.errors unless @address.billing.errors.empty?
-      err[:shipping] = @address.shipping.errors unless @address.shipping.errors.empty?
-      render json: err.to_json, callback: "error_parse"
+      return render_wizard
     else
-      return render js: "window.location = '#{wizard_path(params[:redirect])}';" if params[:redirect].present? and (params[:redirect]=='confirm' || params[:redirect]=='complete')
-      render js: "window.location = '#{next_wizard_path}';"
+      redirect_steps
     end
   end
 
   def redirect_steps
-    return redirect_to wizard_path(params[:redirect]) if params[:redirect].present? and (params[:redirect]=='confirm' || params[:redirect]=='complete')
+    return redirect_to wizard_path(params[:redirect]) if params[:redirect].present? && (params[:redirect] == 'confirm' || params[:redirect] == 'complete')
     redirect_to next_wizard_path
   end
-  def get_address
+
+  def address
     @address = SettingAddress.new(current_user)
   end
-  def get_delivery
+
+  def delivery
     @delivery = ShippingMethod.find_or_initialize_by(id: @order.shipping_method_id)
   end
-  def get_payment
+
+  def payment
     @payment = CreditCard.find_or_initialize_by(order_id: @order.id)
   end
-  def get_order_items
+
+  def order_items
     @order_items = current_order.order_items.order(id: :desc)
   end
 end

@@ -1,36 +1,35 @@
 %main.container.mb-res-50
   = render 'header'
-  -# binding.pry
   = form_for @payment, url: wizard_path, method: :put, remote: false, html: {class: "max-600 mb-80" } do |f|
     - if params[:redirect].present?
-      = f.hidden_field 'redirect',name: 'redirect', id: 'redirect', value: params[:redirect]
+      = f.hidden_field 'redirect', name: 'redirect', id: 'redirect', value: params[:redirect]
     %h3.general-subtitle= t('checkout.payment.title')
-    .form-group{:class => "#{'has-error' if flash[:errors]['number']}"}
+    .form-group{ class: ("has-error" unless @payment.errors[:number].empty?) }
       = f.label :number, t('checkout.payment.number'), class: "control-label input-label"
       = f.text_field :number, placeholder: t('checkout.payment.number'), class: 'form-control'
-      - if flash[:errors]['number']
-        %span.help-block Please enter a valid credit card number
+      - unless @payment.errors[:number].empty?
+        %span.help-block= t('checkout.payment.errors.number_card')
     .row
       .col-sm-6
-        .form-group{:class => "#{'has-error' if flash[:errors]['name']}"}
+        .form-group{ class: ("has-error" unless @payment.errors[:name].empty?) }
           = f.label :name, t('checkout.payment.cardname'), class: "control-label input-label"
           = f.text_field :name, placeholder: t('checkout.payment.cardname'), class: 'form-control'
-          - if flash[:errors]['name']
-            %span.help-block Please enter a valid Name
+          - unless @payment.errors[:name].empty?
+            %span.help-block= t('checkout.payment.errors.name')
       .col-sm-3
-        .form-group{:class => "#{'has-error' if flash[:errors]['expired']}"}
+        .form-group{ class: ("has-error" unless @payment.errors[:expired].empty?) }
           = f.label :expired, t('checkout.payment.expired'), class: "control-label input-label"
-          = f.text_field :expired, placeholder: t('checkout.payment.expired'), class: 'form-control'
-          - if flash[:errors]['expired']
-            %span.help-block Please enter a valid Expired
+          = f.text_field :expired, placeholder: t('checkout.payment.expired'), pattern: '(1[0-2]|0[1-9])\/(1[5-9]|2\d)', class: 'form-control'
+          - unless @payment.errors[:expired].empty?
+            %span.help-block= t('checkout.payment.errors.expired')
       .col-sm-3
-        .form-group.relative{:class => "#{'has-error' if flash[:errors]['cvv']}"}
+        .form-group{ class: ("has-error" unless @payment.errors[:cvv].empty?) }
           = f.label :cvv, t('checkout.payment.cvv'), class: "control-label input-label"
           = f.text_field :cvv, placeholder: t('checkout.payment.cvv'), class: 'form-control'
-          - if flash[:errors]['cvv']
-            %span.help-block Please enter a valid CVV Code
+          - unless @payment.errors[:cvv].empty?
+            %span.help-block= t('checkout.payment.errors.cvv')
           %i.fa.fa-question-circle.general-form-help
     .general-text-align
-      = render 'order_summary'
+      = render 'order_summary', order: @order
     .text-center
       %button.btn.center-block.mb-20= t('button.save_continue')

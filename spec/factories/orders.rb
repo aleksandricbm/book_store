@@ -1,6 +1,15 @@
 FactoryGirl.define do
   factory :order do
-    sequence(:number)  { |y| FFaker::Book.title + y.to_s }
     total_price 10
+    shipping_method
+    order_status
+    factory :with_all_data do
+      after(:create) do |order|
+        create_list :shipping_address, 1, order_id: order.id, user_id: User.last.id
+        create_list :billing_address, 1, order_id: order.id, user_id: User.last.id
+        create_list :order_item, 1, order_id: order.id
+        create_list :credit_card, 1, order_id: order.id
+      end
+    end
   end
 end

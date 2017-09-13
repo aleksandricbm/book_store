@@ -4,6 +4,6 @@
     Waiting for processing
     %i.fa.fa-angle-down.dropdown-icon.pull-right
   %ul.dropdown-menu
-    - @order_statuses.each do |status|
+    - order_statuses.each do |status|
       %li
         %a{href: my_orders_path( filter: status.id)}= status.name

@@ -31,6 +31,6 @@
               %td
                 %span.font-16.in-gold-500= "€#{d.price}"
     .general-text-align
-      = render 'order_summary'
+      = render 'order_summary', order: @order
     .text-center
       %button.btn.center-block.mb-20= t('button.save_continue')

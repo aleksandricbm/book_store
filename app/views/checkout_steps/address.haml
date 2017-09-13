@@ -7,7 +7,7 @@
         %p.general-info-text= t("form.all_fld_require")
       .col-md-5.col-md-offset-1
         %h3.general-subtitle= t("settings.s_address")
-  = form_for @address, url: wizard_path, method: :put, authenticity_token: true, remote: true do |f|
+  = form_for @address, url: wizard_path, method: :put, remote: false do |f|
     - if params[:redirect].present?
       = f.hidden_field 'redirect',name: 'redirect', id: 'redirect', value: params[:redirect]
     .row
@@ -27,6 +27,6 @@
               %i.fa.fa-check
             %span.checkbox-text Use Billing Adress
     .general-text-align.mb-60
-      = render 'order_summary'
+      = render 'order_summary', order: @order
       %button.btn.center-block.mb-20= t('button.save_continue')
 

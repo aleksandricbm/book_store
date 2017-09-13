@@ -5,7 +5,7 @@
     %div
       .max-240
         .general-message-name= "#{current_user.email}"
-  = f.hidden_field :book_id, value: @book.id
+  = f.hidden_field :book_id, value: book.id
   = f.label t('review.title')
   %br
   = f.text_area :comment, cols: 5, rows: 5, class: 'form-control'

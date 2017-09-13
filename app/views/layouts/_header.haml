@@ -37,7 +37,7 @@
               - if user_signed_in?
                 %li
                   %span = current_user.email
-                  = link_to "Log out", destroy_user_session_url, :method => :delete
+                  = link_to t('header.log_out'), destroy_user_session_url, :method => :delete
               - else
                 = render "devise/shared/log_in_sign_up"
           .hidden-xs
@@ -65,6 +65,6 @@
                       %a{href: setting_path()}= t('footer.settings')
                     %li.divider{role: "separator"}
                     %li
-                      = link_to "Log out", destroy_user_session_url, :method => :delete
+                      = link_to t('header.log_out'), destroy_user_session_url, :method => :delete
               - else
                 = render "devise/shared/log_in_sign_up"

@@ -1,28 +1,34 @@
--#= form_for address, method: :put do |f|
 = f.fields_for address do |f|
-  -# binding.pry
-  -#= f.text_field :first_name
-  .form-group
+  .form-group{ class: ("has-error" unless address.errors[:first_name].empty?) }
     = label_tag :first_name, t('address.first_name'), class: "control-label input-label"
     = f.text_field :first_name, placeholder: t('address.first_name'), class: "form-control"
-  .form-group
+    - unless address.errors[:first_name].empty?
+      %span.help-block= address.errors[:first_name][1]
+  .form-group{ class: ("has-error" unless address.errors[:last_name].empty?) }
     = label_tag :last_name, t('address.last_name'), class: "control-label input-label"
     = f.text_field :last_name, placeholder: t('address.last_name'), class: "form-control"
-  .form-group
+    - unless address.errors[:last_name].empty?
+      %span.help-block= address.errors[:last_name][1]
+  .form-group{ class: ("has-error" unless address.errors[:address].empty?) }
     = label_tag :address, t('address.address'), class: "control-label input-label"
     = f.text_field :address, placeholder: t('address.address'), class: "form-control"
-  .form-group
+    - unless address.errors[:address].empty?
+      %span.help-block= address.errors[:address][1]
+  .form-group{ class: ("has-error" unless address.errors[:city].empty?) }
     = label_tag :city, t('address.city'), class: "control-label input-label"
     = f.text_field :city, placeholder: t('address.city'), class: "form-control"
-  .form-group
+    - unless address.errors[:city].empty?
+      %span.help-block= address.errors[:city][1]
+  .form-group{ class: ("has-error" unless address.errors[:zip].empty?) }
     = label_tag :zip, t('address.zip'), class: "control-label input-label"
     = f.text_field :zip, placeholder: t('address.zip'), class: "form-control"
-  .form-group
+    - unless address.errors[:zip].empty?
+      %span.help-block= address.errors[:zip][1]
+  .form-group{ class: ("has-error" unless address.errors[:сountry_id].empty?) }
     = label_tag :сountry, t('address.сountry'), class: "control-label input-label"
-    %select#country.form-control{name: "country", placeholder: t('address.select_country')}
-      %option London
-      %option London
-      %option London
-  .form-group.mb-55
+    = f.select :country_id, Country.all.collect { |country| [country.name, country.id] },{ selected: address.country_id}, {class: "form-control", placeholder: t('address.select_country')}
+  .form-group.mb-55{ class: ("has-error" unless address.errors[:phone].empty?) }
     = label_tag :phone, t('address.phone'), class: "control-label input-label"
     = f.text_field :phone, placeholder: "Example +355 66 123 4567", class: "form-control"
+    - unless address.errors[:phone].empty?
+      %span.help-block= address.errors[:phone][1]

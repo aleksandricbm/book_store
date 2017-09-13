@@ -31,7 +31,7 @@
           .res-mr-200.text-center.general-text-right
             %p.in-gold-500.font-18 Order Summary
             = render 'order_summary', order: current_order
-            = button_to "Checkout", checkout_steps_path(), method: :get, class: "btn btn-default mb-20 visible-xs-inline-block"
-    = button_to "Checkout", checkout_steps_path(), method: :get, class: "btn btn-default mb-20 hidden-xs center-block"
+            = button_to "Checkout", checkout_steps_path, method: :get, class: "btn btn-default mb-20 visible-xs-inline-block"
+    = button_to "Checkout", checkout_steps_path, method: :get, class: "btn btn-default mb-20 hidden-xs center-block"
   - else
-    %h1 Empty Cart
+    %h1= t('cart.empty')

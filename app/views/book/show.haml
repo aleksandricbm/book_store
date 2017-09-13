@@ -52,7 +52,7 @@
   .mb-80
     = render 'review', reviews: @book.reviews
     - if current_user.present?
-      = render 'new_review'
+      = render 'new_review', book: @book
 :javascript
   $(document).ready(function() {
     $('#show_full').click(function(e) {

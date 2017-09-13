@@ -4,21 +4,21 @@
     %td
       %p.font-16= t('cart.subtotal')
     %td
-      %p.font-16= "€ #{@order_details.total_price}"
-  - if @order_details.coupon.present?
+      %p.font-16= "€ #{order_details.total_price}"
+  - if order_details.coupon.present?
     %tr
       %td
         %p.font-16= t('cart.coupon')
       %td
-        %p.font-16= "€ #{@order_details.discount}"
-  - if @order_details.shipping_method.present?
+        %p.font-16= "€ #{order_details.discount}"
+  - if order_details.shipping_method.present?
     %tr
       %td
         %p.font-16= t('cart.ship')
       %td
-        %p.font-16= "€ #{@order_details.shipping}"
+        %p.font-16= "€ #{order_details.shipping}"
   %tr
     %td
       %strong.font-18= t('cart.total')
     %td
-      %strong.font-18= "€ #{@order_details.order_total}"
+      %strong.font-18= "€ #{order_details.order_total}"

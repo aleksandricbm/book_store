@@ -1,5 +1,7 @@
 en:
   mag_title: Bookstore
+  header:
+    log_out: Log out
   address:
     first_name: First Name
     last_name: Last Name
@@ -48,6 +50,7 @@ en:
     coupon: "Coupon:"
     total: "Order Total:"
     ship: "Shipping"
+    empty: Empty Cart
   checkout:
     delivery:
       method: "Method"
@@ -59,6 +62,11 @@ en:
       cardname: "Name on Card"
       expired: "MM / YY"
       cvv: "CVV"
+      errors:
+        number_card: Please enter a valid credit card number
+        name: Please enter a valid Name
+        expired: Please enter a valid Expired
+        cvv: Please enter a valid CVV Code
     confirm:
       ship_address: "Shipping Address"
       bil_address: "Billing Address"
@@ -79,6 +87,7 @@ en:
     privacy: "Privacy"
     b_address: "Billing Address"
     s_address: "Shipping Address"
+    use_billing: Use Billing Adress
     my_orders:
       title: 'My Orders'
       table_number: "Number"

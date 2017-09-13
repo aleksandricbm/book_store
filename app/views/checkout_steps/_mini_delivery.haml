@@ -2,3 +2,5 @@
   = delivery.name
   %span
     = link_to 'edit', wizard_path(:delivery, redirect: 'confirm'), class: "general-edit"
+  %br
+  = "€ #{delivery.price}"

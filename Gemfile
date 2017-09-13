@@ -5,21 +5,22 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.2'
-gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.7'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
-gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'cancancan'
+gem 'coffee-rails', '~> 4.2'
+gem 'country_select'
 gem 'devise'
 gem 'draper'
 gem 'haml'
 gem 'kaminari'
 gem 'omniauth-facebook'
+gem 'jbuilder', '~> 2.5'
+gem 'pg', '~> 0.18'
+gem 'puma', '~> 3.7'
+gem 'rails', '~> 5.1.2'
 gem 'rails_admin'
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
 gem 'wicked'
 
 group :development, :test do
@@ -44,7 +45,7 @@ end
 
 group :test do
   gem 'capybara', '~> 2.14'
-  gem 'database_cleaner'
   gem 'capybara-webkit'
+  gem 'database_cleaner'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end

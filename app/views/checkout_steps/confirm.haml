@@ -3,21 +3,21 @@
   .row.mb-20
     .col-sm-3
       %h3.general-subtitle= t("checkout.confirm.ship_address")
-      = render partial: 'mini_address', locals: { address: @address.shipping}
+      = render 'mini_address', address: @address.shipping
     .col-sm-3
       %h3.general-subtitle= t("checkout.confirm.bil_address")
-      = render partial: 'mini_address', locals: { address: @address.billing}
+      = render 'mini_address', address: @address.billing
     .col-sm-3
       %h3.general-subtitle= t("checkout.confirm.ship")
-      = render partial: 'mini_delivery', locals: { delivery: @delivery}
+      = render 'mini_delivery', delivery: @delivery
     .col-sm-3
       %h3.general-subtitle= t("checkout.confirm.pay")
-      = render partial: 'mini_payment', locals: { payment: @payment}
+      = render 'mini_payment', payment: @payment
   .visible-xs
-    = render partial: 'line_book_xs', locals: { order_items: @order_items }
+    = render 'line_book_xs', order_items: @order_items
   .hidden-xs.divider-lg.pt-20
-    = render partial: 'line_book', locals: { order_items: @order_items }
+    = render 'line_book', order_items: @order_items
   .text-center.general-text-right
-    = render 'order_summary'
+    = render 'order_summary', order: @order
   .text-center
     = button_to t('button.place_order'), next_wizard_path,authenticity_token: true, remote: false,  method: :put, class: 'button btn btn-default mb-20'

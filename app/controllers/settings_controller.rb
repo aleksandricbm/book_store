@@ -9,7 +9,7 @@ class SettingsController < ApplicationController
     @address = SettingAddress.new(current_user)
     respond_to do |format|
       if @address.save(params[:setting_address])
-        format.any { render template: 'settings/show' }
+        format.any { render 'settings/show' }
       else
         err = {}
         err[:billing] = @address.billing.errors unless @address.billing.errors.empty?
@@ -21,10 +21,6 @@ class SettingsController < ApplicationController
 
   def order_details
     @order_details = Order.find(params[:id])
-    # binding.pry
-    # @address = SettingAddress.find_by(current_user)
-    # @delivery = ShippingMethod.find_by(id: @order.shipping_method_id)
-    # @payment = CreditCard.find_or_initialize_by(order_id: @order.id)
     authorize! :create, @order_details
   end
 
