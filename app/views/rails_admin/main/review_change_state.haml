@@ -1,0 +1,12 @@
+%h4 Change Review Status
+
+= form_for(@object, url: review_change_state_path(model_name: @abstract_model.to_param, id: @object.id), html: {method: "put"}) do |f|
+  %input{type: :hidden, name: 'return_to', value: (params[:return_to].presence || request.referer)}
+  = @object.comment
+  %br
+  %br
+  = f.submit 'Approve', class: "btn btn-success"
+  = f.submit 'Reject', class: "btn btn-danger"
+  %button.btn{ type: "submit", name: "_continue", 'data-disable-with': "Cancel" }
+    %i.icon-remove
+    Cancel

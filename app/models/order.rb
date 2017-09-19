@@ -9,6 +9,11 @@ class Order < ApplicationRecord
   has_one :billing_address
   has_one :shipping_address
 
+  scope :processing, -> { joins(:order_status).where(order_statuses: {name: 'Waiting for processing'}) }
+  scope :delivered, -> { joins(:order_status).where(order_statuses: {name: 'Delivered'}) }
+  scope :canceled, -> { joins(:order_status).where(order_statuses: {name: 'Canceled'}) }
+
+
   def total_price
     self.order_items.inject(0) { |sum, item| sum + item.item_total_price }
   end

@@ -14,7 +14,7 @@ class Users::SessionsController < Devise::SessionsController
                     uid: auth['uid']).first || User.create_with_omniauth(auth)
   session[:user_id] = user.id
   redirect_to root_url
-  nd
+  end
 
   # DELETE /resource/sign_out
   # def destroy

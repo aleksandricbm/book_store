@@ -1,4 +1,11 @@
 en:
+  admin:
+    actions:
+      change_state:
+        title: Change order status
+        menu: Change order status
+        breadcrumb: Change order status
+        label: Please select status
   mag_title: Bookstore
   header:
     log_out: Log out

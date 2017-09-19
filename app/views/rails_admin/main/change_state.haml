@@ -1,0 +1,14 @@
+%h4 Change Order Status
+
+= form_for(@object, url: change_state_path(model_name: @abstract_model.to_param, id: @object.id), html: {method: "put"}) do |f|
+  %input{type: :hidden, name: 'return_to', value: (params[:return_to].presence || request.referer)}
+  - state = OrderStatus.find(@object.order_status_id).name
+  - unless state=='Waiting for processing' or state=='In Progress'
+    = label_tag :order_status_id, t('admin.actions.change_state.label'), class: "control-label input-label"
+    = f.select :order_status_id, OrderStatus.where({ name: ['Delivered', 'Canceled'] }).collect { |status| [status.name, status.id] },{ selected: @object.order_status_id}, {class: "form-control", placeholder: t('admin.actions.change_state.label')}
+    %button.btn.btn-danger{type: "submit", :'data-disable-with' => t("Ok")}
+      %i.icon-white.icon-ok
+      = t("save")
+  %button.btn{type: "submit", name: "_continue", :'data-disable-with' => t("Cancel")}
+    %i.icon-remove
+    Cancel

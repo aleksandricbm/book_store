@@ -30,4 +30,8 @@ class User < ApplicationRecord
   def admin?
     self.role == 'admin'
   end
+
+  rails_admin do
+    visible false
+  end
 end

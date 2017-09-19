@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     @order_status ||=OrderStatus.find_by(name: 'Waiting for processing')
     @current_order ||= if session[:order_id]
       Order.find(session[:order_id])
-    elsif current_user.orders.find_by(order_status_id: @order_status.id).present?
+    elsif !current_user.nil? && current_user.orders.find_by(order_status_id: @order_status.id).present?
       current_user.orders.find_by(order_status_id: @order_status.id)
     else
       Order.new
