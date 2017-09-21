@@ -681,7 +681,7 @@ DEPENDENCIES
   brakeman
   cancancan
   capybara
-  capybara-webkit
+  capybara-webkit (= 1.1.0)
   carrierwave
   carrierwave-google-storage
   ckeditor
