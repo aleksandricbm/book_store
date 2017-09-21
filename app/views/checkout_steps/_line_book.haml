@@ -15,7 +15,7 @@
       %tr
         %td
           .general-img-wrap-table
-            %img.cart-img-shadow.pull-left{src: "http://jonathantweedy.com/resources/thumbs/SmashingBook5ResponsiveWebDesign.jpg", alt: "design-book"}
+            = image_tag number_image(item.book, 0), alt: 'book-img', class: 'cart-img-shadow pull-left'
         %td
           %p.title= item.book.name
           %p.in-grey-600.fw-300= item.book.description

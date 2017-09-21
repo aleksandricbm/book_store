@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :error, :success
 
   def category
-    @category = Category.all
+    category = Category.all
   end
 
   def configure_permitted_parameters
@@ -35,11 +35,10 @@ class ApplicationController < ActionController::Base
   end
 
   def current_order
-    @order_status ||=OrderStatus.find_by(name: 'Waiting for processing')
     @current_order ||= if session[:order_id]
       Order.find(session[:order_id])
-    elsif !current_user.nil? && current_user.orders.find_by(order_status_id: @order_status.id).present?
-      current_user.orders.find_by(order_status_id: @order_status.id)
+    elsif !current_user.nil? && current_user.orders.find_by(order_status_id: nil).present?
+      current_user.orders.find_by(order_status_id: nil)
     else
       Order.new
     end

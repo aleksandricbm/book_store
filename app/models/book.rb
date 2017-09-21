@@ -5,6 +5,7 @@ class Book < ApplicationRecord
   has_many :order_items
   has_many :orders, through: :order_items
   has_many :reviews
+  has_many :images, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 2, maximum: 150 }
   validates :price, presence: true, numericality: { greater_than: 1 }
@@ -18,5 +19,4 @@ class Book < ApplicationRecord
   scope :author, -> { includes(:authors) }
   scope :category, -> { includes(:category) }
   scope :order_id_desc, -> { order('id desc') }
-  scope :order_review_desc, -> { order('reviews_qty desc') }
 end

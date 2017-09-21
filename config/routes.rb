@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get '/catalog/:id', to: 'catalog#show', as: 'catalog_id'
   resources 'category', only: [:show]
   resource :cart, only: %i[show update]
-  resources :order_items, only: [:create, :destroy] do
+  resources :order_items, only: %i[create destroy] do
     put 'decrease', on: :member
     put 'increase', on: :member
   end
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
   get 'my_orders', to: 'settings#orders'
   get 'my_orders/:id', to: 'settings#order_details', as: 'order_details'
-  resources :checkout_steps, only: %i[index show update]
+  resources :checkout_steps, only: %i[show update]
   resources :reviews, only: :create
+  resources :images, only: %i[new create show]
 end

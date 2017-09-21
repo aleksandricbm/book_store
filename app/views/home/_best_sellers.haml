@@ -1,2 +1,2 @@
 - bestsellers.each do |best|
-  = render 'layouts/book_lite', best: best
+  = render 'layouts/book_lite', best: Book.find(best.book_id)

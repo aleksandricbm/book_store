@@ -2,30 +2,12 @@ require Rails.root.join('lib', 'rails_admin', 'order_change_state.rb')
 require Rails.root.join('lib', 'rails_admin', 'review_change_state.rb')
 
 RailsAdmin.config do |config|
-
-  ### Popular gems integration
-
   ## == Devise ==
   config.authenticate_with do
     # warden.authenticate! scope: :user
-    redirect_to main_app.root_path unless current_user.admin?
+    redirect_to main_app.root_path unless current_user && current_user.try(:admin?)
   end
   config.current_user_method(&:current_user)
-
-  ## == Cancan ==
-  # config.authorize_with :cancan
-
-  ## == Pundit ==
-  # config.authorize_with :pundit
-
-  ## == PaperTrail ==
-  # config.audit_with :paper_trail, 'User', 'PaperTrail::Version' # PaperTrail >= 3.0.0
-
-  ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
-
-  ## == Gravatar integration ==
-  ## To disable Gravatar integration in Navigation Bar set to false
-  # config.show_gravatar = true
 
   config.actions do
     dashboard                     # mandatory
@@ -35,28 +17,34 @@ RailsAdmin.config do |config|
     bulk_delete
     show
     edit do
-      except ['Order', 'Review']
+      except %w[Order Review]
     end
     delete do
-      except ['Order', 'Review']
+      except %w[Order Review]
     end
     show_in_app
 
     change_state do
       visible do
-        bindings[:abstract_model].model.to_s == "Order"
+        bindings[:abstract_model].model.to_s == 'Order'
       end
     end
 
     review_change_state do
       visible do
-        bindings[:abstract_model].model.to_s == "Review"
+        bindings[:abstract_model].model.to_s == 'Review'
       end
     end
   end
 
-  config.included_models = ["Book", "Author", "Category", "Order", "Review"]
+  config.included_models = %w[Book Author Category Order Review Image]
 
+  config.model 'Image' do
+    edit do
+      field :file, :carrierwave
+      include_all_fields
+    end
+  end
   config.model 'Book' do
     list do
       field :category
@@ -75,16 +63,16 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model "Order" do
+  config.model 'Order' do
     list do
       field :number
       field :created_at
       field :order_status
-      scopes [:processing, :delivered, :canceled]
+      scopes %i[processing delivered canceled]
     end
   end
 
-  config.model "Review" do
+  config.model 'Review' do
     list do
       field :book
       field :comment
@@ -95,7 +83,7 @@ RailsAdmin.config do |config|
         end
       end
       field :check
-      scopes [:unprocessed, :processed]
+      scopes %i[unprocessed processed]
     end
     edit do
       field :check
