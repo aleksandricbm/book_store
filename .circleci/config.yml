@@ -12,6 +12,9 @@ jobs:
         environment:
           RAILS_ENV: test
       - image: circleci/postgres:9.4.12-alpine
+  branches:
+      only:
+        - checkout
   steps:
     - checkout
 
