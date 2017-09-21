@@ -680,7 +680,7 @@ DEPENDENCIES
   bootstrap-sass
   brakeman
   cancancan
-  capybara (~> 2.14)
+  capybara
   capybara-webkit
   carrierwave
   carrierwave-google-storage
