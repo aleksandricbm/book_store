@@ -33,7 +33,7 @@
               %li
                 %a{type: "button", 'data-toggle': "collapse", href: "#menu", 'aria-expanded': "false", 'aria-controls': "menu"}= t("footer.shop")
                 %ul#menu.collapse.list-unstyled.pl-30.mb-10{'aria-expanded': "false"}
-                  = render 'layouts/list_categories', categories: category
+                  = render 'layouts/list_categories', categories: @category
               - if user_signed_in?
                 %li
                   %span = current_user.email
@@ -47,7 +47,7 @@
               %li.dropdown
                 %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t("footer.shop")
                 %ul.dropdown-menu
-                  = render "layouts/list_categories", categories: category
+                  = render "layouts/list_categories", categories: @category
               - if user_signed_in?
                 %li.dropdown
                   %a.dropdown-toggle{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}= t("footer.my_acc")

@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :error, :success
 
   def category
-    category = Category.all
+    @category = Category.all
   end
 
   def configure_permitted_parameters

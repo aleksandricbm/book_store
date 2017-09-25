@@ -4,6 +4,7 @@ class OrderItemsController < ApplicationController
   before_action :find_item, only: %i[destroy decrease increase]
 
   def create
+
     if @order.order_items.find_by(book_id: item_params[:book_id])
       @item = @order.order_items.find_by(book_id: item_params[:book_id])
       increase

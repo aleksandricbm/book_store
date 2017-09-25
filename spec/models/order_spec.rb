@@ -20,7 +20,7 @@ RSpec.describe Order, type: :model do
 
   it 'order total with discount' do
     order.coupon = FactoryGirl.create(:coupon, price: 10.00)
-    expect(order.order_total).to eq 10
+    expect(order.order_total).to eq 20
   end
 
   it 'retrun discount' do

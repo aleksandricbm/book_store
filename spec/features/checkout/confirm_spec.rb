@@ -6,9 +6,11 @@ RSpec.feature "CheckOut_confirm", :type => :feature do
   before(:each) do
     login_as(user, scope: :user, run_callbacks: false)
     visit checkout_step_path(:confirm)
+    FactoryGirl.create(:order_status)
   end
 
   it "check all data" do
+
     expect(page.html).to have_content I18n.t('checkout.confirm.ship_address')
     expect(page.html).to have_content I18n.t('checkout.confirm.bil_address')
     expect(page.html).to have_content I18n.t('checkout.confirm.ship')
@@ -28,25 +30,19 @@ RSpec.feature "CheckOut_confirm", :type => :feature do
     expect(page.html).to have_content ship.city
     expect(page.html).to have_content ship.zip
     expect(page.html).to have_content ship.phone
-    # expect(page.html).to have_content "checkout_steps/address?redirect=confirm"
-    # expect(page).to have_link('edit', href: 'checkout_steps/address?redirect=confirm')
-    # expect(page).to have_xpath("//a", href: "checkout_steps/address?redirect=confirm")
-    # expect(page).to have_link(nil, href: 'checkout_steps/address?redirect=confirm')
+
     expect(page.html).to have_content bill.first_name
     expect(page.html).to have_content bill.last_name
     expect(page.html).to have_content bill.address
     expect(page.html).to have_content bill.city
     expect(page.html).to have_content bill.zip
     expect(page.html).to have_content bill.phone
-    # expect(page.html).to have_content '/checkout_steps/address?redirect=confirm'
 
     expect(page.html).to have_content delivery.name
     expect(page.html).to have_content "€ #{delivery.price}"
-    # expect(page.html).to have_content '/checkout_steps/delivery?redirect=confirm'
 
     expect(page.html).to have_content "** ** ** #{credit.number.to_s[-4,4]}"
     expect(page.html).to have_content credit.expired
-    # expect(page.html).to have_content '/checkout_steps/payment?redirect=confirm'
 
     expect(page.html).to have_content book_order.name
     expect(page.html).to have_content book_order.description

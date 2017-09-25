@@ -18,15 +18,14 @@ RSpec.describe CheckoutStepsController, type: :controller do
   end
 
   context "validations" do
-
     describe "step/address" do
-      subject(:address) {create(:shipping_address)}
+      subject(:address) {FactoryGirl.create(:shipping_method)}
       it "should validate first name with a 2-35 letter string" do
         ["", "a", "I"].each do |word|
-          address.first_name = word
+          address.name = word
           expect(address).to_not be_valid
         end
-        address.first_name = "ab"
+        address.name = "ab"
         expect(address).to be_valid
       end
     end

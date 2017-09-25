@@ -3,11 +3,11 @@ machine:
     version:
       2.4.1
   environment:
-    GC_ACCESS_KEY_ID = "key"
-    GC_SECRET_ACCESS_KEY = "key"
-    GC_folder = "key"
-    FB_key = 'key'
-    FB_secret_key = 'key'
+    GC_ACCESS_KEY_ID: 'key'
+    GC_SECRET_ACCESS_KEY: 'key'
+    GC_folder: 'key'
+    FB_key: 'key'
+    FB_secret_key: 'key'
 dependencies:
   pre:
     - gem install bundler

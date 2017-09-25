@@ -42,9 +42,7 @@ describe Book, type: :model do
     expect(Book.author.to_sql).to eq Book.all.includes(:authors).to_sql
     expect(Book.category.to_sql).to eq Book.all.includes(:category).to_sql
     expect(Book.order_id_desc.to_sql).to eq Book.all.order('id desc').to_sql
-    expect(Book.order_review_desc.to_sql).to eq Book.all.order('reviews_qty desc').to_sql
     expect(Book.author.order_id_desc.to_sql).to eq Book.all.includes(:authors).order('id desc').to_sql
-    expect(Book.author.order_review_desc.to_sql).to eq Book.all.includes(:authors).order('reviews_qty desc').to_sql
   end
 
 end
