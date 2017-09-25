@@ -22,12 +22,10 @@ class SettingAddress
 
   def create_billing_address(user_id)
     @billing = BillingAddress.find_or_initialize_by(user_id: user_id)
-    @billing.save
   end
 
   def create_shipping_address (user_id)
     @shipping = ShippingAddress.find_or_initialize_by(user_id: user_id)
-    @shipping.save
   end
 
   def params_address(params, type)

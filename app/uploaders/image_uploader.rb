@@ -11,6 +11,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    Time.now.utc.to_s
+    Time.now.to_i
   end
 end

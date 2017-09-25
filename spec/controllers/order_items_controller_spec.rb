@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe OrderItemsController, type: :controller do |variable|
-  FactoryGirl.create(:user)
 
   before {
-    @order = FactoryGirl.create(:with_all_data)
+    user = FactoryGirl.create(:user, :with_order)
+    @order = user.orders.first
     session[:order_id] = @order.id
   }
 
@@ -32,14 +32,11 @@ RSpec.describe OrderItemsController, type: :controller do |variable|
 
   it "find_item" do
     controller.params = ActionController::Parameters.new({ id: @order.order_items.first.id})
+    controller.instance_eval{find_order}
     expect(controller.instance_eval{find_item}).not_to be_nil
   end
 
-  context "redirect_cart" do
-
-  end
-
-  context "find_order" do
-
+  it "find_order" do
+    expect(controller.instance_eval{find_order}).not_to be_nil
   end
 end

@@ -1,6 +1,7 @@
 # This controller Setting
 class SettingsController < ApplicationController
   before_action :authenticate_user!
+  # load_and_authorize_resource
   def show
     @address = SettingAddress.new(current_user)
   end
@@ -27,10 +28,11 @@ class SettingsController < ApplicationController
   def orders
     @order_statuses = OrderStatus.all
     if params[:filter].present?
-      @orders = filter
+      @orders = filter.decorate
     else
       @orders = current_user.orders.decorate
     end
+    authorize! :read, @orders
   end
 
   def change_email
@@ -47,6 +49,6 @@ class SettingsController < ApplicationController
   end
 
   def filter
-    current_user.orders.find_by(order_status_id: params[:filter].to_i).decorate
+    Order.where(order_status_id: params[:filter].to_i).accessible_by(current_ability) if Order.find_by(order_status_id: params[:filter].to_i).present?
   end
 end

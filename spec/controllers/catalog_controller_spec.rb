@@ -27,6 +27,6 @@ RSpec.describe CatalogController, type: :controller do |variable|
 
   it "private sort (newest))" do
     controller.params = ActionController::Parameters.new({ sort: :newest , page: 1})
-    expect(controller.instance_eval{sorts}).to be_nil
+    expect(controller.instance_eval{sort}).to be_nil
   end
 end
