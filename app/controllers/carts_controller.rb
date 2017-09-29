@@ -7,7 +7,7 @@ class CartsController < ApplicationController
   def update
     @coupon = find_coupon
     current_order.update_attributes(coupon_id: @coupon.id) unless @coupon.nil?
-    redirect_to cart_path, notice: @coupon.nil? ? "invalid coupon" : ""
+    redirect_to cart_path, notice: @coupon.nil? ? 'invalid coupon' : ''
   end
 
   def find_coupon

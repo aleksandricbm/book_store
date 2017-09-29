@@ -30,9 +30,9 @@ module RailsAdmin
             if request.get?
               render @action.template_name, layout: false
             else
-              Review.find(params[:id]).update_attribute(:check, 1) if params[:commit]=='Approve'
-              Review.find(params[:id]).update_attribute(:check, 2) if params[:commit]=='Reject'
-              flash.now[:notice] = "Review change state successful" #if Order.find(params[:id]).update_attribute(:order_status_id, params[:order][:order_status_id])
+              Review.find(params[:id]).update_attribute(:check, 1) if params[:commit] == 'Approve'
+              Review.find(params[:id]).update_attribute(:check, 2) if params[:commit] == 'Reject'
+              flash.now[:notice] = "Review change state successful"
               redirect_to back_or_index
             end
           end

@@ -3,6 +3,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
   def after_sign_up_path_for(_resource)
-    return checkout_step_path(:address) if session[:checkout] == "checkout"
+    return checkout_step_path(:address) if session[:checkout] == 'checkout'
   end
 end

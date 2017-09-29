@@ -2,8 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'home#home'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks',
-    registrations: 'users/registrations'
-  }
+    registrations: 'users/registrations' }
 
   resources :books, only: %i[show index]
   get 'catalog', to: 'books#index'

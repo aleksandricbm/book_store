@@ -1,7 +1,5 @@
 # This User model
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
@@ -11,7 +9,7 @@ class User < ApplicationRecord
 
   attr_accessor :skip_password
   validates :email, format: { with: /\A[^-.]\w+[-.]?(\w+[-!#$%&'*+\/=?^_`{|}~.]\w+)*[^-]@([\w\d]+)\.([\w\d]+)\z/ }
-  validates :password, length: { minimum: 8}, format: { with: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[\w-]{8,}/ }, unless: :skip_password
+  validates :password, length: { minimum: 8 }, format: { with: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[\w-]{8,}/ }, unless: :skip_password
 
 
   def self.from_omniauth(auth)
@@ -28,8 +26,8 @@ class User < ApplicationRecord
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+      if data = session['devise.facebook_data'] && session['devise.facebook_data']['extra']['raw_info']
+        user.email = data['email'] if user.email.blank?
       end
     end
   end
