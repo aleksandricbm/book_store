@@ -6,15 +6,15 @@
         %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
           = t("filters.newest_first")
           %i.fa.fa-angle-down.dropdown-icon.pull-right
-        = render 'filters', category_id: @catalog_list.first.category_id
+        = render 'filters', category: @category
     %ul.list-inline.pt-10.mb-25.mr-240
       %li.mr-35
         %a.filter-link{href: catalog_path()}
           = t("text_helpers.all")
-          %span.badge.general-badge= @count_book_in_category.inject(0){|sum,x| sum +x[1]}
+          %span.badge.general-badge= @books.count
       - @count_book_in_category.each do |count_cat|
         %li.mr-35
-        = link_to  catalog_id_path(count_cat[0][1]), class: "filter-link #{active_category(count_cat[0][1])}" do
+        = link_to  catalog_path(category: count_cat[0][1]), class: "filter-link #{active_category(count_cat[0][1])}" do
           = count_cat[0][0]
           %span.badge.general-badge= count_cat[1]
   .dropdowns.mb-25.visible-xs
@@ -23,12 +23,12 @@
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
         = t("filters.newest_first")
         %i.fa.fa-angle-down.dropdown-icon.pull-right
-      = render 'filters', category_id: @catalog_list.first.category_id
+      = render 'filters', category: @category
     %p.lead.small.mb-10= t("text_helpers.sort_by")
     .dropdown
       %a.dropdown-toggle.lead.small{href: "#", 'data-toggle': "dropdown", role: "button", 'aria-haspopup': "true", 'aria-expanded': "false"}
         = t("filters.newest_first")
         %i.fa.fa-angle-down.dropdown-icon.pull-right
-      = render 'filters', category_id: @catalog_list.first.category_id
+      = render 'filters', category: @category
   .mb-120{id: "list_catalog"}
     = render 'catalog_list', catalog_list: @catalog_list

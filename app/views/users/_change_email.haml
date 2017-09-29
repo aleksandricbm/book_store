@@ -1,0 +1,10 @@
+%p.in-gold-500.font-18.mb-25= t('change_email.title')
+= form_for this_user, url: settings_privacy_path, class: "general-form-md" do |f|
+  = f.hidden_field nil, name: :type, value: :change_email
+  .form-group.mb-35{ class: ("has-error" unless this_user.errors[:email].empty?) }
+    %label.control-label.input-label{for: "email"}= t('change_email.lable_email')
+    = f.email_field :email, name: :email, class: "form-control", placeholder: t('change_email.enter_email')
+    - unless this_user.errors[:email].empty?
+      %span.help-block= this_user.errors[:email][0]
+  .general-text-align
+    %button.btn.btn-default.mb-35= t('button.save')

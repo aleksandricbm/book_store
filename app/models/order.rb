@@ -33,6 +33,6 @@ class Order < ApplicationRecord
   end
 
   def total_quantity
-    self.order_items.inject(0) { |sum, item| sum + item.quantity }
+    self.order_items.sum(:quantity)
   end
 end

@@ -1,0 +1,3 @@
+if ($("#view_more").length) $("#view_more").remove();
+
+$('#list_catalog .row:last').after('<%= j(render "/books/catalog_list", catalog_list: @catalog_list) %>');

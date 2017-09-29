@@ -22,7 +22,8 @@
         = render template: 'forms/address.haml', locals: {f: f, address: @address.shipping}
         .form-group.checkbox
           %label.checkbox-label
-            %input.checkbox-input{type: "checkbox", hidden: "true"}
+            -#= f.check_box 'use_billing', class: 'checkbox-input',
+            %input.checkbox-input{ type: "checkbox", hidden: "true", name: :use_billing, id: :use_billing}
             %span.checkbox-icon
               %i.fa.fa-check
             %span.checkbox-text Use Billing Adress

@@ -1,0 +1,31 @@
+
+[1mFrom:[0m /home/sasha/RUBY/book_store/app/controllers/concerns/step_checkout_show.rb @ line 32 CheckoutStepsController#step_jump:
+
+     [1;34m8[0m: [32mdef[0m [1;34mstep_jump[0m(specific_step)
+     [1;34m9[0m:   [1;34m# binding.pry[0m
+    [1;34m10[0m:   [32mcase[0m specific_step
+    [1;34m11[0m:   [32mwhen[0m [33m:address[0m
+    [1;34m12[0m:     address
+    [1;34m13[0m:   [32mwhen[0m [33m:delivery[0m
+    [1;34m14[0m:     delivery
+    [1;34m15[0m:   [32mwhen[0m [33m:payment[0m
+    [1;34m16[0m:     delivery
+    [1;34m17[0m:     payment
+    [1;34m18[0m:   [32mwhen[0m [33m:confirm[0m
+    [1;34m19[0m:     address
+    [1;34m20[0m:     delivery
+    [1;34m21[0m:     payment
+    [1;34m22[0m:     order_items
+    [1;34m23[0m:   [32mwhen[0m [33m:complete[0m
+    [1;34m24[0m:     address
+    [1;34m25[0m:     delivery
+    [1;34m26[0m:     payment
+    [1;34m27[0m:     order_items
+    [1;34m28[0m:     current_order.update([35morder_status_id[0m: [1;34m1[0m)
+    [1;34m29[0m:     session.delete([33m:order_id[0m)
+    [1;34m30[0m:   [32mwhen[0m [33m:login[0m
+    [1;34m31[0m:     binding.pry
+ => [1;34m32[0m:     p [31m[1;31m'[0m[31mlogin[1;31m'[0m[31m[0m
+    [1;34m33[0m:   [32mend[0m
+    [1;34m34[0m: [32mend[0m
+

@@ -15,7 +15,7 @@
 
 /node_modules
 /yarn-error.log
-
+.rake_tasks~
 .byebug_history
 
 # /config/database.yml

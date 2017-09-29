@@ -1,5 +1,6 @@
 %main.container.general-main-wrap
   %h1.general-title-margin Cart
+
   - if @order_items.any?
     .visible-xs
       = render 'line_book_xs', order_items: @order_items
@@ -21,9 +22,11 @@
       .row
         = form_for cart_path(), method: :put do |f|
           .col-sm-4
-            .input-group.general-input-group
+            .input-group.general-input-group{ class: ("has-error" unless notice.blank?) }
               %label.input-label Enter Your Coupon Code
               = f.text_field nil, name: :coupon, class: "form-control mb-30", placeholder: "Enter Your Coupon Code "
+              - unless notice.blank?
+                %span.help-block= notice
               %div
                 %button.btn.btn-primary.mr-5.mb-15.visible-xs-inline-block Apply Coupon
                 %button.btn.btn-primary.mb-15.res-block Update cart

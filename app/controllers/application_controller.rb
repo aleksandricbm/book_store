@@ -2,16 +2,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :reset_session
 
+  include Current_order
+
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :category
+  before_action :categories
   before_action :current_order
 
   helper_method :current_order
 
   add_flash_types :error, :success
 
-  def category
-    @category = Category.all
+  def categories
+    @categories = Category.all
   end
 
   def configure_permitted_parameters
@@ -32,18 +34,5 @@ class ApplicationController < ActionController::Base
       format.html { redirect_to main_app.root_url, notice: exception.message }
       format.js   { head :forbidden, content_type: 'text/html' }
     end
-  end
-
-  def current_order
-    @current_order ||= if session[:order_id]
-      Order.find(session[:order_id])
-    elsif !current_user.nil? && current_user.orders.find_by(order_status_id: nil).present?
-      current_user.orders.find_by(order_status_id: nil)
-    else
-      Order.new
-    end
-    rescue ActiveRecord::RecordNotFound
-      reset_session
-      redirect_to root_path
   end
 end

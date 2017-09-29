@@ -88,6 +88,12 @@ en:
       t_send: "An order confirmation has been has been sent to "
       order: "Order"
     ship_method: "Shipping Method"
+    login:
+      login_wth_pass: "Log In with Password"
+      quick_login: "Quick Register"
+      quick_descr: "You'll be able to create password later"
+      butt_login_wth_pass: "Log in with Password"
+      butt_con_check: "Continue to Checkout"
   settings:
     title: "Settings"
     address: "Address"

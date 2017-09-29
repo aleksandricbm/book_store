@@ -6,4 +6,4 @@
   %ul.dropdown-menu
     - order_statuses.each do |status|
       %li
-        %a{href: my_orders_path( filter: status.id)}= status.name
+        %a{href: orders_path( filter: status.id)}= status.name

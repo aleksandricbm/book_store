@@ -9,21 +9,28 @@ class User < ApplicationRecord
   has_one :shipping_address, dependent: :destroy
   has_many :orders
 
-  validates_format_of :email, :with => /\A(?!.*\.\.)(?!.*\-\-)^(?!\.)([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates :password, length: { minimum: 8}
-  validates :password_confirmation, presence: true, on: :create
-  validates :password, confirmation: true, presence: true, length: {minimum: 8}, with: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}$/, on: :change_email
+  attr_accessor :skip_password
+  validates :email, format: { with: /\A[^-.]\w+[-.]?(\w+[-!#$%&'*+\/=?^_`{|}~.]\w+)*[^-]@([\w\d]+)\.([\w\d]+)\z/ }
+  validates :password, length: { minimum: 8}, format: { with: /(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])[\w-]{8,}/ }, unless: :skip_password
+
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       auth_info = auth.info
       user.email = auth_info.email
       user.password = Devise.friendly_token[0, 20]
-      user.name = auth_info.name   # assuming the user model has a name
-      user.image = auth_info.image # assuming the user model has an image
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
+      split_name = auth_info.name.split(' ')
+      user.first_name = split_name[0]
+      user.last_name = split_name[1]
+      user.image = auth_info.image
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"] if user.email.blank?
+      end
     end
   end
 

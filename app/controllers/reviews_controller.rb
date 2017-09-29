@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-  load_and_authorize_resource
   def create
     @review = Review.new(params_review)
     @review.update(user_id: current_user.id) if current_user.id.present?

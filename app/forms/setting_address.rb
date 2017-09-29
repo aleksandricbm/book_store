@@ -11,10 +11,14 @@ class SettingAddress
     create_shipping_address(current_user.id)
   end
 
-  def save(params)
+  def save(params, use_billing = nil)
     @billing.order_id = @current_order && @shipping.order_id = @current_order if @current_order.present?
     return false unless @billing.update(params_address(params, :billing_address))
-    return false unless @shipping.update(params_address(params, :shipping_address))
+    if use_billing == 'on'
+      return false unless @shipping.update(params_address(params, :billing_address))
+    else
+      return false unless @shipping.update(params_address(params, :shipping_address))
+    end
     return true
   end
 

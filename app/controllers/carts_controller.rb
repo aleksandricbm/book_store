@@ -5,13 +5,12 @@ class CartsController < ApplicationController
   end
 
   def update
-    begin
-      @order = current_order
-      @order.coupon_id = Coupon.find_by(code: params[:coupon]).id
-      @order.save
-    rescue NoMethodError => exception
-      return redirect_to cart_path
-    end
-    redirect_to cart_path
+    @coupon = find_coupon
+    current_order.update_attributes(coupon_id: @coupon.id) unless @coupon.nil?
+    redirect_to cart_path, notice: @coupon.nil? ? "invalid coupon" : ""
+  end
+
+  def find_coupon
+    Coupon.find_by_code(params[:coupon])
   end
 end
