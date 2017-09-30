@@ -20,6 +20,5 @@ RSpec.feature "CheckOut_delivery", :type => :feature do
     expect(page.html).to have_content I18n.t('checkout.payment.cardname')
     expect(page.html).to have_content I18n.t('checkout.payment.expired')
     expect(page.html).to have_content I18n.t('checkout.payment.cvv')
-
   end
 end

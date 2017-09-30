@@ -2,20 +2,19 @@ require "rails_helper"
 
 RSpec.feature "CheckOut_confirm", :type => :feature do
   let(:user) {FactoryGirl.create(:user, :with_order)}
+  FactoryGirl.create(:order_status)
 
   before(:each) do
     login_as(user, scope: :user, run_callbacks: false)
     visit checkout_step_path(:confirm)
-    FactoryGirl.create(:order_status)
+
   end
 
   it "check all data" do
-
     expect(page.html).to have_content I18n.t('checkout.confirm.ship_address')
     expect(page.html).to have_content I18n.t('checkout.confirm.bil_address')
     expect(page.html).to have_content I18n.t('checkout.confirm.ship')
     expect(page.html).to have_content I18n.t('checkout.confirm.pay')
-
     @order = user.orders.last
     ship = @order.shipping_address
     bill = @order.billing_address
@@ -23,7 +22,6 @@ RSpec.feature "CheckOut_confirm", :type => :feature do
     credit = @order.credit_card
     order_item = @order.order_items.last
     book_order = order_item.book
-
     expect(page.html).to have_content ship.first_name
     expect(page.html).to have_content ship.last_name
     expect(page.html).to have_content ship.address

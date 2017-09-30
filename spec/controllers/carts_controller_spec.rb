@@ -5,7 +5,7 @@ RSpec.describe CartsController, type: :controller do |variable|
     before { get :show }
 
     it "return http success for render template" do
-      expect(response).to be_success
+      expect(response).to have_http_status(200)
       expect(response).to render_template('show')
     end
 
@@ -21,15 +21,15 @@ RSpec.describe CartsController, type: :controller do |variable|
     end
 
     it "correct coupon" do
-      FactoryGirl.create(:coupon)
-      post :update, params: { coupon: '10' }
-      expect(assigns(:order).coupon_id).not_to be_nil
-      expect(assigns(:order).coupon_id).to eq Coupon.find_by(code: '10').id
+      coupon = FactoryGirl.create(:coupon)
+      post :update, params: { coupon: coupon.code }
+      expect(assigns(:coupon)).not_to be_nil
+      expect(assigns(:coupon).id).to eq coupon.id
       expect(response).to redirect_to cart_path
     end
     it "correct coupon" do
       post :update, params: { coupon: 'nil' }
-      expect(assigns(:order).coupon_id).to be_nil
+      expect(assigns(:coupon)).to be_nil
       expect(response).to redirect_to cart_path
     end
   end

@@ -1,7 +1,6 @@
 #
 class SettingAddress
   include ActiveModel::Model
-  # include Virtus
   include ActiveModel::Validations
   attr_accessor :billing, :shipping, :save_address
 

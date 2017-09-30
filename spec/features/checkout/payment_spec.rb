@@ -6,6 +6,7 @@ RSpec.feature "CheckOut_payment", :type => :feature do
   before(:each) do
     login_as(user, scope: :user, run_callbacks: false)
     visit checkout_step_path(:payment)
+    FactoryGirl.create(:order_status)
   end
   it "valid payment" do
     fill_in 'credit_card[number]', with: '12345678909876'

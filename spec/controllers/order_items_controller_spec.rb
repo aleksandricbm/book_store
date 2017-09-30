@@ -15,8 +15,8 @@ RSpec.describe OrderItemsController, type: :controller do |variable|
     end
 
     it "return order_item new" do
-      FactoryGirl.create(:book)
-      post :create, params: { order_item: { quantity: 1, book_id: Book.last.id } }
+      book = FactoryGirl.create(:book)
+      post :create, params: { order_item: { quantity: 1, book_id: book.id } }
       expect(assigns(:item).quantity).to  eq 1
     end
   end
