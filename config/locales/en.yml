@@ -19,7 +19,7 @@ en:
     select_country: Select Country
     phone: Phone
   form:
-    all_fld_require: "all fields are required"
+    all_fld_require: 'all fields are required'
   button:
     back_result: Back to results
     add_to_cart: Add to Cart
@@ -27,9 +27,9 @@ en:
     view_more: View more
     buy_now: Buy Now
     start: Get Started
-    save: "Save"
-    save_continue: "Save and Continue"
-    place_order: "Place Order"
+    save: 'Save'
+    save_continue: 'Save and Continue'
+    place_order: 'Place Order'
     back_store: Back to Store
   title:
     catalog: Catalog
@@ -47,85 +47,89 @@ en:
     newest_first: Newest first
     filter_by_cat: Filter by category
     pop_first: Popular first
-    price_l: "Price: Low to Hight"
-    price_h: "Price: Hight to Low"
+    price_l: 'Price: Low to Hight'
+    price_h: 'Price: Hight to Low'
   text:
-    home_members: "We pore through hundreds of new books each month and select the five best we can find to share with our members."
+    home_members: 'We pore through hundreds of new books each month and select the five best we can find to share with our members.'
   cart:
-    order_summary: "Order Summary"
-    subtotal: "Subtotal:"
-    coupon: "Coupon:"
-    total: "Order Total:"
-    ship: "Shipping"
+    order_summary: 'Order Summary'
+    subtotal: 'Subtotal:'
+    coupon: 'Coupon:'
+    total: 'Order Total:'
+    ship: 'Shipping'
     empty: Empty Cart
   checkout:
     delivery:
-      method: "Method"
-      day: "Days"
-      price: "Price"
+      method: 'Method'
+      day: 'Days'
+      price: 'Price'
     payment:
-      title: "Credit Card"
-      number: "Card Number"
-      cardname: "Name on Card"
-      expired: "MM / YY"
-      cvv: "CVV"
+      title: 'Credit Card'
+      number: 'Card Number'
+      cardname: 'Name on Card'
+      expired: 'MM / YY'
+      cvv: 'CVV'
       errors:
         number_card: Please enter a valid credit card number
         name: Please enter a valid Name
         expired: Please enter a valid Expired
         cvv: Please enter a valid CVV Code
     confirm:
-      ship_address: "Shipping Address"
-      bil_address: "Billing Address"
-      ship: "Shipmetns"
-      pay: "Payment Information"
-      title_book: "Book"
-      title_price: "Price"
-      title_quantity: "Quantity"
-      title_total: "Total"
+      ship_address: 'Shipping Address'
+      bil_address: 'Billing Address'
+      ship: 'Shipmetns'
+      pay: 'Payment Information'
+      title_book: 'Book'
+      title_price: 'Price'
+      title_quantity: 'Quantity'
+      title_total: 'Total'
     complete:
-      thanks: "Thank You for your Order!"
-      t_send: "An order confirmation has been has been sent to "
-      order: "Order"
-    ship_method: "Shipping Method"
+      thanks: 'Thank You for your Order!'
+      t_send: 'An order confirmation has been has been sent to '
+      order: 'Order'
+    ship_method: 'Shipping Method'
     login:
-      login_wth_pass: "Log In with Password"
-      quick_login: "Quick Register"
-      quick_descr: "You'll be able to create password later"
-      butt_login_wth_pass: "Log in with Password"
-      butt_con_check: "Continue to Checkout"
+      login_wth_pass: 'Log In with Password'
+      quick_login: 'Quick Register'
+      quick_descr: 'You`ll be able to create password later'
+      butt_login_wth_pass: 'Log in with Password'
+      butt_con_check: 'Continue to Checkout'
   settings:
-    title: "Settings"
-    address: "Address"
-    privacy: "Privacy"
-    b_address: "Billing Address"
-    s_address: "Shipping Address"
+    title: 'Settings'
+    address: 'Address'
+    privacy: 'Privacy'
+    b_address: 'Billing Address'
+    s_address: 'Shipping Address'
     use_billing: Use Billing Adress
     my_orders:
       title: 'My Orders'
-      table_number: "Number"
-      table_completed: "Completed at"
-      table_status: "Status"
-      table_total: "Total"
+      table_number: 'Number'
+      table_completed: 'Completed at'
+      table_status: 'Status'
+      table_total: 'Total'
   remove_account:
-    title: "Remove Account"
-    button: "Please Remove My Account"
-    confirm: "I understand that all data will be lost"
+    title: 'Remove Account'
+    button: 'Please Remove My Account'
+    confirm: 'I understand that all data will be lost'
   change_email:
-    title: "Email"
-    lable_email: "Enter Email"
-    enter_email: "Enter your email"
+    title: 'Email'
+    lable_email: 'Enter Email'
+    enter_email: 'Enter your email'
   change_pass:
-    title: "Password"
-    old_pwd: "Old Password"
-    new_pwd: "New Password"
-    conf_pwd: "Confirm Password"
+    title: 'Password'
+    old_pwd: 'Old Password'
+    new_pwd: 'New Password'
+    conf_pwd: 'Confirm Password'
   review:
-    title: "Review"
-    new-review: "New Review"
+    title: 'Review'
+    new-review: 'New Review'
   footer:
     home: Home
     shop: Shop
     orders: Orders
     settings: Settings
     my_acc: My account
+  mailer:
+    thanks: 'Thanks for your registration in bookstore'
+    email: 'Your email:'
+    pass: 'Your password:'

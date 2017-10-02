@@ -28,7 +28,7 @@
           %p.general-login-text= 'Or'
         = form_for(User.new, url: user_registration_path, html: { class: 'general-form' }) do |f|
           .form-group.mb-40
-            %p.fw-600= t('checkout.logn.quick_login')
+            %p.fw-600= t('checkout.login.quick_login')
             %p.fw-300= t('checkout.login.quick_descr')
             = f.label :email, t('checkout.login.enter_email'), class: 'control-label input-label'
             = f.email_field :email, placeholder: "Enter Email", class: 'form-control'
