@@ -23,7 +23,6 @@ RSpec.describe User, type: :model do
   end
 
   context "validations" do
-# binding.pry
     it "reqexp email" do
       expect(:email).to match /\A(?!.*\.\.)(?!.*\-\-)^(?!\.)([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
     end
@@ -49,18 +48,5 @@ RSpec.describe User, type: :model do
       user.email = "test"
       expect(user).to_not be_valid
     end
-
-    # it "is not valid first name" do
-    #   user.first_name = 'TEST'
-    #   expect(user).to_not validate_presence_of(:first_name)
-    #   expect(user.first_name).to_not be_empty
-    #   expect(user.first_name).to_not match /\A[A-Za-z]+\z{1,50}/
-    # end
-    # it "is not valid last name" do
-    #   user.first_name = 'TEST'
-    #   expect(user).to_not validate_presence_of(:last_name)
-    #   expect(user.last_name).to_not be_empty
-    #   expect(user.last_name).to_not match /\A[A-Za-z]+\z{1,50}/
-    # end
   end
 end

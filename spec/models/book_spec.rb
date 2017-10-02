@@ -6,34 +6,41 @@ describe Book, type: :model do
   it { is_expected.to have_many :order_items}
   it { is_expected.to have_many :orders}
   it { is_expected.to have_many(:orders).through(:order_items)}
-  it {
+  it "Book name" do
     is_expected.to validate_presence_of(:name)
     is_expected.to validate_length_of(:name).is_at_least(2).is_at_most(150)
-  }
-  it {
+  end
+
+  it "Book price" do
     is_expected.to validate_presence_of(:price)
     is_expected.to validate_numericality_of(:price)
-  }
-  it {
+  end
+
+  it "Book description" do
     is_expected.to validate_presence_of(:description)
     is_expected.to validate_length_of(:description).is_at_least(2).is_at_most(2500)
-  }
-  it {
+  end
+
+  it "Book height" do
     is_expected.to validate_presence_of(:height)
     is_expected.to validate_numericality_of(:height).is_greater_than(1)
-  }
-  it {
+  end
+
+  it "Book weight" do
     is_expected.to validate_presence_of(:weight)
     is_expected.to validate_numericality_of(:weight).is_greater_than(1)
-  }
-  it {
+  end
+
+  it "Book depth" do
     is_expected.to validate_presence_of(:depth)
     is_expected.to validate_numericality_of(:depth).is_greater_than(1)
-  }
-  it {
+  end
+
+  it "Book material" do
     is_expected.to validate_presence_of(:material)
     is_expected.to validate_length_of(:material).is_at_least(2).is_at_most(50)
-  }
+  end
+
   it { is_expected.to validate_presence_of(:category_id) }
 
   it { is_expected.to have_many :reviews}
