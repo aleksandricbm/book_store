@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
 
   include Current_order
 
-  before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :categories
   before_action :current_order
 

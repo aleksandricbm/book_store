@@ -14,16 +14,14 @@ class UsersController < ApplicationController
   private
 
   def change_email
-    @current_user = current_user
-    @current_user.skip_password = true
-    @current_user.update(params_email)
+    current_user.skip_password = true
+    current_user.update(params_email)
     render :index, this_user: @current_user.errors
   end
 
   def change_pwd
-    @current_user = current_user
-    @current_user.update_with_password(params_pwd)
-    render :index, this_user: @current_user.errors
+    current_user.update_with_password(params_pwd)
+    render :index, this_user: current_user.errors
   end
 
   def params_pwd
